@@ -1,6 +1,16 @@
 :root {
-  --color-primary: ;
-  --color-secondary: ;
-  --color-background: ;
-  --color-text: ;
+  --color-primary: #EB4496;
+  --color-secondary: #72D1D4;
+  --color-background: #F9F3EA;
+  --color-text: #000000;
+
+  --font-header: 'Inria Serif', serif;
+  --font-main: 'Sometype Mono', monospace;
+
+  --fs-header: 25px;
+  --fs-sub: 18px;
+  --fs-body: 12px;
+
+  --fw-bold: 700;
+  --fw-regular: 400;
 }
