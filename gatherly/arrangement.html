@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="no">
+    <head>
+        <meta charset="UTF-8" />
+        <!-- <link rel="icon" type="image/svg+xml" href="/gatherly.svg" /> -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Gatherly - Arrangement</title>
+    </head>
+    <body>
+        <!--nav-bar kommer her-->
+        <main class="event-wrapper">
+            <article id="event-content">
+                <h1 id="event-title"></h1>
+                <img id="event-image" src="" alt="Arrangement bilde" />
+                <p>Dato:<span id="event-date"></span></p>
+                <p>Sted:<span id="event-location"></span></p>
+                <p id="event-description"></p>
+                <button class="join-event-btn">Meld deg på</button>
+            </article>
+
+            <div id="event-not-found" style="display: none">
+                <h2>Fant ikke arrangementet 😢</h2>
+                <a href="/utforsk.html">Gå tilbake til utforsk</a>
+            </div>
+        </main>
+        <script type="module" src="./src/ts/pages/arrangement.ts"></script>
+    </body>
+</html>
