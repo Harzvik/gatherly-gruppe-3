@@ -1,4 +1,4 @@
-export type meetupsObjType = {
+export type MeetupsType = {
     id: number;
     name: string;
     description: string;
