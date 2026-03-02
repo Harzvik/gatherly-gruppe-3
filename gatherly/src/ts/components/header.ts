@@ -28,5 +28,3 @@ export class HeaderComponent extends HTMLElement {
     `;
   }
 }
-
-customElements.define("g-header", HeaderComponent);
