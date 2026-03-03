@@ -7,6 +7,54 @@
     <title>Gatherly - Min Side</title>
   </head>
   <body>
+    <!-- Navbar + header her -->
+
+    <main class="myPage-container">
+      <section class="profile-section">
+        <h2>Min profil</h2>
+        <div class="profile-card"></div>
+          <div class="tape tape-top-left"></div>
+          <div class="profile-content">
+            <div class="profile-avatar">
+              <img src="/" alt="profilbilde">
+          </div>
+          <div class="profile-info">
+            <p class="username">@brukernavn?</p>
+            <p class="email">epost@adresse.no</p>
+          </div>  
+          <button class="rediger-btn">Rediger</button>
+          </div>
+          <div class="tape tape-bottom-right"></div>
+        </div>
+      </section>
+
+      <section class="events-section">
+        <div class="row-header">
+          <h2>Mine arrangementer</h2>
+          <button class="arrow-icon">></button>
+        </div>
+        <div id="my-events-list" class="event-row"></div>
+      </section>
+
+      <section class="events-section">
+        <div class="row-header">
+          <h2>Kommende arrangementer</h2>
+          <button class="arrow-icon">></button>
+        </div>
+        <div id="future-events-list" class="event-row"></div>
+      </section>
+
+      <section class="events-section">
+        <div class="row-header">
+          <h2>Lagrede arrangementer</h2>
+          <button class="arrow-icon">></button>
+        </div>
+        <div id="saved-events-list" class="event-row"></div>
+      </section>
+
+      <button class="add-event" title="Opprett nytt arrangement!">+</button>
+    </main>
+
     <script type="module" src="/src/minSide.ts"></script>
   </body>
 </html>
