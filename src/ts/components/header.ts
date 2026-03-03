@@ -6,23 +6,23 @@ export class HeaderComponent extends HTMLElement {
             <a href="../index.html">
                 <img src="../public/assets/gatherly_logo.png"/>
             </a>
-                <li>
-                    <ul>
+                <ul>
+                    <li>
                         <a href="../index.html">Hjem</a>
-                    </ul>
-                    <ul>
+                    </li>
+                    <li>
                         <a href="../utforsk.html">Utforsk</a>
-                    </ul>
-                    <ul>
+                    </li>
+                    <li>
                         <a href="../kontakt.html">Kontakt oss</a>
-                    </ul>
-                    <ul style="display: none;">
+                    </li>
+                    <li style="display: none;">
                         <a href="../minSide.html">Min Side</a>
-                    </ul>
-                    <ul>
+                    </li>
+                    <li>
                         <a href="../loggInn.html">Logg inn</a>
-                    </ul>
-                </li>
+                    </li>
+                </ul>
             </nav>
         </header>
     `;
