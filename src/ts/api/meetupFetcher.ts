@@ -7,6 +7,6 @@ export async function getMeetupById(id: number) {
       `HTTP error! status: ${response.status} ved henting av meetup med id ${id}`,
     );
   }
-  const meetup: MeetupsType = await response.json();
-  return meetup;
+  const meetupData: MeetupsType = await response.json();
+  return meetupData;
 }
