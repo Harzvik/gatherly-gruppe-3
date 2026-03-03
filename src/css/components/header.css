@@ -1,0 +1,61 @@
+@import "../variables.css";
+@import "../reset.css";
+
+.main-header {
+    background-color: var(--color-background);
+    padding: 20px 0 0 0;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+    margin: 0;
+}
+
+.nav-item {
+    text-decoration: none;
+    color: var(--color-text);
+    font-family: var(--font-main);
+    font-weight: var(--fw-bold);
+    text-transform: uppercase;
+    font-size: var(--fs-header);
+    position: relative;
+}
+
+.header-divider {
+    border: 0;
+    border-top: 1px solid var(--color-text);
+    margin-top: 20px;
+    width: 100%;
+}
+
+.logo-wrapper {
+    position: relative;
+    align-items: center;
+    text-decoration: none;
+    padding: 5px 10px;
+}
+
+.logo-wrapper img {
+    height: 60px;
+    width: auto;
+    display: block;
+    position: relative;
+}
+
+/* 
+    MOBIL SKJERMER
+*/
+@media (max-width: 768px) {
+    /* her skal det jo være hamburger meny + profil-icon på siden*/
+}
