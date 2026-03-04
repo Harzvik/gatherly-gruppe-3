@@ -1,3 +1,4 @@
+/*Alex Harsvik og Eileen Kim*/
 export class HeaderComponent extends HTMLElement {
   connectedCallback(): void {
     this.innerHTML = `

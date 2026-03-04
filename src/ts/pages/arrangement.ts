@@ -1,3 +1,4 @@
+/*Alex Harsvik*/
 import { getMeetupById } from "../api/meetupFetcher.ts";
 import { renderEventDetails } from "../functions/eventSlugRenderer.ts";
 import { HeaderComponent } from "../components/header.ts";

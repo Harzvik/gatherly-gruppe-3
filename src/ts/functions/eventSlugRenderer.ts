@@ -1,3 +1,4 @@
+/*Alex Harsvik*/
 import type { MeetupsType } from "../types/meetupType.ts";
 
 export async function renderEventDetails(meetupData: MeetupsType) {

@@ -1,3 +1,4 @@
+/*Alex Harsvik*/
 import type { MeetupsType } from "../types/meetupType";
 
 export async function getMeetupById(id: number) {
