@@ -9,13 +9,13 @@ const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const meetupId = Number(urlParams.get("id"));
 
-console.log(meetupId, typeof meetupId);
+console.log(`Fetched meetupId: ${meetupId}, with type: ${typeof meetupId}`);
 
-/* Hent meetup data og render på siden */
-if (meetupId) {
+/* Prøv å hente meetup data og render på siden */
+try  {
   const meetupData = await getMeetupById(meetupId);
   renderEventDetails(meetupData);
-} else {
+} catch (error) {
   console.error("Ingen gyldig meetup ID funnet i URL-en.");
   const eventNotFound: HTMLElement | null =
     document.querySelector("#event-not-found");
