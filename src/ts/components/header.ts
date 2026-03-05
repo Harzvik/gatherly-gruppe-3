@@ -1,10 +1,11 @@
+/*Alex Harsvik og Eileen Kim*/
 export class HeaderComponent extends HTMLElement {
   connectedCallback(): void {
     this.innerHTML = `
         <header>
             <nav>
             <a href="../index.html">
-                <img src="../public/assets/gatherly_logo.png"/>
+                <img src="/assets/gatherly_logo.png"/>
             </a>
                 <ul>
                     <li>
