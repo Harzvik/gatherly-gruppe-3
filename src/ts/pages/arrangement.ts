@@ -2,6 +2,7 @@
 import { getMeetupById } from "../api/meetupFetcher.ts";
 import { renderEventDetails } from "../functions/eventSlugRenderer.ts";
 import { HeaderComponent } from "../components/header.ts";
+import { renderPostForm } from "../functions/postFormRenderer.ts";
 
 customElements.define("g-header", HeaderComponent);
 
@@ -13,7 +14,7 @@ const meetupId = Number(urlParams.get("id"));
 console.log(`Fetched meetupId: ${meetupId}, with type: ${typeof meetupId}`);
 
 /* Prøv å hente meetup data og render på siden */
-try  {
+try {
   const meetupData = await getMeetupById(meetupId);
   renderEventDetails(meetupData);
 } catch (error) {
@@ -24,3 +25,4 @@ try  {
     eventNotFound.style.display = "block";
   }
 }
+renderPostForm();
