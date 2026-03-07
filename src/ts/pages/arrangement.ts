@@ -38,7 +38,7 @@ form.addEventListener(`submit`, async (event) => {
 
     const postText = (document.querySelector("#post-text") as HTMLTextAreaElement).value;
     console.log(`You entered post text: ${postText}`);
-    /* const meetupId = getMeetupidFromURL(); */
+
     const newPost: PostsType = {
         id: null,
         meetupId: meetupId,
