@@ -3,13 +3,11 @@ import { getMeetupById } from "../api/meetupFetcher.ts";
 import { renderEventDetails } from "../functions/eventSlugRenderer.ts";
 import { HeaderComponent } from "../components/header.ts";
 import { renderPostForm } from "../functions/postFormRenderer.ts";
+import { getMeetupidFromURL } from "../functions/getMeetupidFromURL.ts";
+
+const meetupId = getMeetupidFromURL();
 
 customElements.define("g-header", HeaderComponent);
-
-/* Hent meetup ID fra URL-en */
-const queryString = window.location.search;
-const urlParams = new URLSearchParams(queryString);
-const meetupId = Number(urlParams.get("id"));
 
 console.log(`Fetched meetupId: ${meetupId}, with type: ${typeof meetupId}`);
 

@@ -4,7 +4,7 @@ export function renderPostForm() {
     postsContainer.innerHTML = `
             <div class="posts-list"></div>
 
-            <form id="post-form">
+            <form id="new-post-form">
                 <label for="post-text">Kommenter:</label>
                 <textarea id="post-text" placeholder="Skriv din kommentar..." required></textarea>
                 <button type="submit">Publiser</button>
