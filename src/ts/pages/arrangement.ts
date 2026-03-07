@@ -37,7 +37,8 @@ form.addEventListener(`submit`, async (event) => {
     let userId = 1; // Placeholder
 
     const postText = (document.querySelector("#post-text") as HTMLTextAreaElement).value;
-    const meetupId = getMeetupidFromURL();
+    console.log(`You entered post text: ${postText}`);
+    /* const meetupId = getMeetupidFromURL(); */
     const newPost: PostsType = {
         id: null,
         meetupId: meetupId,

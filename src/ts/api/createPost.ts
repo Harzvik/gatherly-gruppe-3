@@ -4,6 +4,7 @@ export async function createPost(newPostData: PostsType) {
     const response = await fetch("http://localhost:3000/api/posts", {
         method: "POST",
         headers: {
+            "Content-Type": "application/json",
             "Authorization": "Bearer kalle123" // Placeholder API key
         },
         body: JSON.stringify(newPostData)
@@ -13,5 +14,4 @@ export async function createPost(newPostData: PostsType) {
     } else {
         console.log("Post opprettet med data:", newPostData);
     }
-    return response.json();
 }
