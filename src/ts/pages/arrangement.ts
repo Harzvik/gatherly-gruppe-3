@@ -6,6 +6,7 @@ import { renderPostForm } from "../functions/postFormRenderer.ts";
 import { getMeetupidFromURL } from "../functions/getMeetupidFromURL.ts";
 import type { PostsType } from "../types/postsType.ts";
 import { createPost } from "../api/createPost.ts";
+import { renderPostsForMeetup } from "../functions/postRenderer.ts";
 
 const meetupId = getMeetupidFromURL();
 
@@ -27,6 +28,7 @@ try {
 }
 
 renderPostForm();
+renderPostsForMeetup(meetupId);
 
 const form =document.querySelector("#new-post-form") as HTMLFormElement;
 
@@ -44,13 +46,14 @@ form.addEventListener(`submit`, async (event) => {
         likes: 0,
         dislikes: 0,
         comments: [],
-        created: new Date().toISOString(),
-        updated: new Date().toISOString()
+        created: "",
+        updated: ""
         };
 
     try {
         await createPost(newPost);
         (document.querySelector("#post-text") as HTMLTextAreaElement).value = "";
+        renderPostsForMeetup(meetupId);
 
     } catch (error) {
         console.error("Feil ved oppretting av post:", error);
