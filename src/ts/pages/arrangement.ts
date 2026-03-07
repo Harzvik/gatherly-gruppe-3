@@ -42,6 +42,7 @@ form.addEventListener(`submit`, async (event) => {
         id: null,
         meetupId: meetupId,
         userId: userId,
+        postName: "",
         text: postText,
         likes: 0,
         dislikes: 0,

@@ -4,7 +4,7 @@ export type PostsType = {
   id: number | null;
   meetupId: number;
   userId: number;
-  /* postName: string; */
+  postName: string;
   text: string;
   likes: number;
   dislikes: number;
