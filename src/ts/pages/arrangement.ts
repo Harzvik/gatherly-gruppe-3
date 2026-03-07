@@ -4,6 +4,8 @@ import { renderEventDetails } from "../functions/eventSlugRenderer.ts";
 import { HeaderComponent } from "../components/header.ts";
 import { renderPostForm } from "../functions/postFormRenderer.ts";
 import { getMeetupidFromURL } from "../functions/getMeetupidFromURL.ts";
+import type { PostsType } from "../types/postsType.ts";
+import { createPost } from "../api/createPost.ts";
 
 const meetupId = getMeetupidFromURL();
 
@@ -23,5 +25,34 @@ try {
     eventNotFound.style.display = "block";
   }
 }
-/* Midlertidig test render*/
+
 renderPostForm();
+
+const form =document.querySelector("#new-post-form") as HTMLFormElement;
+
+form.addEventListener(`submit`, async (event) => {
+  event.preventDefault();
+    let userId = 1; // Placeholder
+
+    const postText = (document.querySelector("#post-text") as HTMLTextAreaElement).value;
+    const meetupId = getMeetupidFromURL();
+    const newPost: PostsType = {
+        id: null,
+        meetupId: meetupId,
+        userId: userId,
+        text: postText,
+        likes: 0,
+        dislikes: 0,
+        comments: [],
+        created: new Date().toISOString(),
+        updated: new Date().toISOString()
+        };
+
+    try {
+        await createPost(newPost);
+        (document.querySelector("#post-text") as HTMLTextAreaElement).value = "";
+
+    } catch (error) {
+        console.error("Feil ved oppretting av post:", error);
+    }
+});
