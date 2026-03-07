@@ -25,4 +25,5 @@ try {
     eventNotFound.style.display = "block";
   }
 }
+/* Midlertidig test render*/
 renderPostForm();

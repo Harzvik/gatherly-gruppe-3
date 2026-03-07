@@ -5,8 +5,8 @@ export function renderPostForm() {
             <div class="posts-list"></div>
 
             <form id="post-form">
-                <label for="post-text">Innlegg:</label>
-                <textarea id="post-text" placeholder="Skriv inn ditt innlegg..." required></textarea>
+                <label for="post-text">Kommenter:</label>
+                <textarea id="post-text" placeholder="Skriv din kommentar..." required></textarea>
                 <button type="submit">Publiser</button>
             </form>
         `;
