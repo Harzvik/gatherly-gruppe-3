@@ -1,3 +1,4 @@
+/*Alex Harsvik*/
 export type MeetupsType = {
   id: number;
   name: string;
