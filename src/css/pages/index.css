@@ -1,1 +1,4 @@
-/* bruk disse til å importere andre komponenter for hver side */
+@import "../variables.css";
+@import "../reset.css";
+@import "../components/header.css";
+
