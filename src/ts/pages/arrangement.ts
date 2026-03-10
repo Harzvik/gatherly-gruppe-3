@@ -2,18 +2,20 @@
 import { getMeetupById } from "../api/meetupFetcher.ts";
 import { renderEventDetails } from "../functions/eventSlugRenderer.ts";
 import { HeaderComponent } from "../components/header.ts";
+import { renderPostForm } from "../functions/postFormRenderer.ts";
+import { getMeetupidFromURL } from "../functions/getMeetupidFromURL.ts";
+import type { PostsType } from "../types/postsType.ts";
+import { createPost } from "../api/createPost.ts";
+import { renderPostsForMeetup } from "../functions/postRenderer.ts";
+
+const meetupId = getMeetupidFromURL();
 
 customElements.define("g-header", HeaderComponent);
-
-/* Hent meetup ID fra URL-en */
-const queryString = window.location.search;
-const urlParams = new URLSearchParams(queryString);
-const meetupId = Number(urlParams.get("id"));
 
 console.log(`Fetched meetupId: ${meetupId}, with type: ${typeof meetupId}`);
 
 /* Prøv å hente meetup data og render på siden */
-try  {
+try {
   const meetupData = await getMeetupById(meetupId);
   renderEventDetails(meetupData);
 } catch (error) {
@@ -24,3 +26,38 @@ try  {
     eventNotFound.style.display = "block";
   }
 }
+
+renderPostForm();
+renderPostsForMeetup(meetupId);
+
+const form =document.querySelector("#new-post-form") as HTMLFormElement;
+
+form.addEventListener(`submit`, async (event) => {
+  event.preventDefault();
+    let userId = 1; // Placeholder
+
+    const postText = (document.querySelector("#post-text") as HTMLTextAreaElement).value;
+    console.log(`You entered post text: ${postText}`);
+
+    const newPost: PostsType = {
+        id: null,
+        meetupId: meetupId,
+        userId: userId,
+        postName: "",
+        text: postText,
+        likes: 0,
+        dislikes: 0,
+        comments: [],
+        created: "",
+        updated: ""
+        };
+
+    try {
+        await createPost(newPost);
+        (document.querySelector("#post-text") as HTMLTextAreaElement).value = "";
+        renderPostsForMeetup(meetupId);
+
+    } catch (error) {
+        console.error("Feil ved oppretting av post:", error);
+    }
+});
