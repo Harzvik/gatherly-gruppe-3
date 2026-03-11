@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gatherly - Logg inn</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <span class="logo-text">Gatherly</span>
+                <span class="logo-dot">.</span>
+            </div>
+            <nav>
+                <a href="#" class="nav-link">HJEM</a>
+                <a href="#" class="nav-link">UTFORSK</a>
+                <a href="#" class="nav-link">KONTAKT OSS</a>
+                <a href="#" class="nav-link active">LOGG INN</a>
+            </nav>
+        </header>
+
+        <main>
+            <div class="form-container">
+                <div class="tape tape-left"></div>
+                <div class="tape tape-right"></div>
+                
+                <form id="loginForm" class="auth-form">
+                    <h1>Logg inn!</h1>
+                    
+                    <div class="form-group">
+                        <input type="email" id="email" placeholder="E-post" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="password" id="password" placeholder="Passord" required>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Logg Inn</button>
+                    
+                    <div class="form-footer">
+                        <span>Glemt passord?</span><br>
+                        <span>Ingen konto? <a href="register.html" class="link">Registrer deg</a></span>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
