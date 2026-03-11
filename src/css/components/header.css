@@ -37,7 +37,7 @@
 .nav-item.active::after {
     content: ""; 
     position: absolute;
-    background-image: url('/assets/component_assets/cyan_markings/marking2.webp');
+    background-image: url('/assets/component_assets/cyan_markings/cyan_marking2.webp');
     background-size: 100% 100%;
     background-repeat: no-repeat;
     background-position: center;
