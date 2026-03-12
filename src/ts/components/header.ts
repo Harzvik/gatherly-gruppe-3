@@ -5,7 +5,7 @@ export class HeaderComponent extends HTMLElement {
         <header class="main-header">
             <nav class="nav-container">
                 <a href="../index.html" class="logo-wrapper">
-                    <img src="../assets/gatherly_logo.png" alt="gatherly-logo"/>
+                    <img src="../assets/Gatherly_logo.png" alt="gatherly-logo"/>
                 </a>
                 <ul class="nav-links">
                     <li>
