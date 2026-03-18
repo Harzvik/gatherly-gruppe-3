@@ -7,10 +7,12 @@ import { getMeetupidFromURL } from "../functions/getMeetupidFromURL.ts";
 import type { PostsType } from "../types/postsType.ts";
 import { createPost } from "../api/createPost.ts";
 import { renderPostsForMeetup } from "../functions/postRenderer.ts";
+import { CardComponent } from "../components/card.ts";
 
 const meetupId = getMeetupidFromURL();
 
 customElements.define("g-header", HeaderComponent);
+customElements.define("g-card", CardComponent);
 
 console.log(`Fetched meetupId: ${meetupId}, with type: ${typeof meetupId}`);
 
@@ -30,34 +32,34 @@ try {
 renderPostForm();
 renderPostsForMeetup(meetupId);
 
-const form =document.querySelector("#new-post-form") as HTMLFormElement;
+const form = document.querySelector("#new-post-form") as HTMLFormElement;
 
 form.addEventListener(`submit`, async (event) => {
   event.preventDefault();
-    let userId = 1; // Placeholder
+  let userId = 1; // Placeholder
 
-    const postText = (document.querySelector("#post-text") as HTMLTextAreaElement).value;
-    console.log(`You entered post text: ${postText}`);
+  const postText = (document.querySelector("#post-text") as HTMLTextAreaElement)
+    .value;
+  console.log(`You entered post text: ${postText}`);
 
-    const newPost: PostsType = {
-        id: null,
-        meetupId: meetupId,
-        userId: userId,
-        postName: "",
-        text: postText,
-        likes: 0,
-        dislikes: 0,
-        comments: [],
-        created: "",
-        updated: ""
-        };
+  const newPost: PostsType = {
+    id: null,
+    meetupId: meetupId,
+    userId: userId,
+    postName: "",
+    text: postText,
+    likes: 0,
+    dislikes: 0,
+    comments: [],
+    created: "",
+    updated: "",
+  };
 
-    try {
-        await createPost(newPost);
-        (document.querySelector("#post-text") as HTMLTextAreaElement).value = "";
-        renderPostsForMeetup(meetupId);
-
-    } catch (error) {
-        console.error("Feil ved oppretting av post:", error);
-    }
+  try {
+    await createPost(newPost);
+    (document.querySelector("#post-text") as HTMLTextAreaElement).value = "";
+    renderPostsForMeetup(meetupId);
+  } catch (error) {
+    console.error("Feil ved oppretting av post:", error);
+  }
 });
