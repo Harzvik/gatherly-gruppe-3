@@ -8,11 +8,9 @@
 
 .nav-container {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 40px;
+    justify-content: space-between;
+    padding: 0 5rem;
 }
 
 .nav-links {
@@ -28,7 +26,7 @@
     font-family: var(--font-main);
     font-weight: var(--fw-bold);
     text-transform: uppercase;
-    font-size: var(--fs-header);
+    font-size: var(--fs-sub);
     position: relative;
     padding: 5px 15px;
     z-index: 1;
@@ -52,14 +50,13 @@
 }
 
 .logo-wrapper {
-    position: relative;
     text-decoration: none;
-    padding: 18px 0 0 0;
-    display: block;
+    display: flex;
+    align-items: center;
 }
 
 .logo-wrapper img {
-    height: 60px;
+    height: 3.5rem;
     width: auto;
     display: block;
     position: relative;
