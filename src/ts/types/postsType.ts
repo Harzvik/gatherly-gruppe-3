@@ -1,3 +1,4 @@
+/*Alex Harsvik*/
 import type { CommentsType } from "./commentsType";
 
 export type PostsType = {

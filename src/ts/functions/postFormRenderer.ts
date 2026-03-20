@@ -1,3 +1,4 @@
+/*Alex Harsvik*/
 export function renderPostForm() {
   const postsContainer = document.querySelector("#posts-container");
   if (postsContainer) {
