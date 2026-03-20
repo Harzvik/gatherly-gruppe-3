@@ -1,5 +1,14 @@
 /* Eileen Kim */
 
+.card-tape {
+    width: 60%;
+    height: auto;
+
+    position: relative;
+    margin: 0 auto;
+    top: -50px;
+}
+
 .card {
     background-image: url('/assets/component_assets/cards/card_3.webp');
     display: flex;
@@ -11,6 +20,7 @@
     min-height: 20rem;
     max-height: fit-content;
     width: 15rem;
+    
 }
 
 

@@ -5,6 +5,7 @@ export class CardComponent extends HTMLElement {
   connectedCallback(): void {
     this.innerHTML = `
         <div class="card">
+            <img class="card-tape" src="../assets/component_assets/cyan_tape/tape2.webp">
             <img src="${this.getAttribute("image") || "../assets/default_event_img.jpeg"}" alt="Card Image" class="card-image"/>
             <div class="card-description-wrapper">
                 <h2 class="card-title">${this.getAttribute("title") || "Arrangement Tittel"}</h2>
