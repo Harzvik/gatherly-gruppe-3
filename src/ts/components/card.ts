@@ -1,13 +1,18 @@
-/*Alex Harsvik og Eileen Kim*/
+/* Alex Harsvik */
+import "../../css/components/card.css";
+
 export class CardComponent extends HTMLElement {
   connectedCallback(): void {
     this.innerHTML = `
         <div class="card">
+            <img class="card-tape" src="../assets/component_assets/cyan_tape/tape2.webp">
             <img src="${this.getAttribute("image") || "../assets/default_event_img.jpeg"}" alt="Card Image" class="card-image"/>
             <div class="card-description-wrapper">
-                <h2 class="card-title">${this.getAttribute("title") || "Placeholder Event"}</h2>
-                <p class="card-tag">${this.getAttribute("tag") || "No Tags"}</p>
-                <p class="card-time">${this.getAttribute("time") || "TBA"}</p>
+                <h2 class="card-title">${this.getAttribute("title") || "Arrangement Tittel"}</h2>
+                <div class="tag-time-wrapper">
+                  <p class="card-tag">${this.getAttribute("tag") || "No Tags"}</p>
+                  <p class="card-time">${this.getAttribute("time") || "TDA"}</p>
+                </div>
             </div>
         </div>
     `;
