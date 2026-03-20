@@ -26,14 +26,14 @@ export async function renderEventDetails(meetupData: MeetupsType) {
             <div class="event-actions-bar">
                 <div class="event-bar-left">
                     <p>${meetupData.date}</p>
-                    <h2 class="event-title">${meetupData.name}</h2>
+                    <h2 class="event-title-bar">${meetupData.name}</h2>
                 </div>
                 <div class="event-bar-right">
                     <span class="event-price">Gratis</span>
                     <button class="like-event-btn">
                         <img src="../../../public/assets/component_assets/icons/heart_empty.webp" alt="Hjerte ikon" class="like-event-img"/>
                     </button>
-                    <button class="join-event-btn">Meld deg på</button>
+                    <button class="join-event-btn">Bli med!</button>
                 </div>
             </div>
 
