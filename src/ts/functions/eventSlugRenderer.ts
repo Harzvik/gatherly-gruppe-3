@@ -5,12 +5,14 @@ export async function renderEventDetails(meetupData: MeetupsType) {
   const eventContainer = document.querySelector("#event-container");
   if (eventContainer) {
     eventContainer.innerHTML = `
-            <ul>
-                ${meetupData.tags.map((tag) => `<li>${tag}</li>`).join("")}
-            </ul>
-            <h1 class="event-title">${meetupData.name}</h1>
-            <p><strong>Opprettet av:</strong> Placeholder bruker </p>
-            <p class="event-description">${meetupData.description}</p>
+            <div class="event-info-wrapper">
+                <ul id="event-tags">
+                    ${meetupData.tags.map((tag) => `<li>${tag}</li>`).join("")}
+                </ul>
+                <h1 class="event-title">${meetupData.name}</h1>
+                <p><strong>Opprettet av:</strong> Placeholder bruker </p>
+                <p class="event-description">${meetupData.description}</p>
+            </div>
             <div class="event-details-card">
                 <img src="../../../public/assets/component_assets/cyan_tape/tape3.webp" alt="Blå teipbit" class="event-tape"/>
                 <div class="event-details-mask">
@@ -25,7 +27,17 @@ export async function renderEventDetails(meetupData: MeetupsType) {
                         <p>${meetupData.location}</p>
                     </div>
                 </div>
-                <div class="event-actions-bar">
+            </div>
+
+        `;
+  }
+}
+
+export async function renderEventActionBar(meetupData: MeetupsType) {
+  const eventContainer = document.querySelector("#event-action-bar");
+  if (eventContainer) {
+    eventContainer.innerHTML = `
+<div class="event-actions-bar">
                     <div class="event-bar-left">
                         <p>${meetupData.date}</p>
                         <h2 class="event-title-bar">${meetupData.name}</h2>
@@ -38,8 +50,6 @@ export async function renderEventDetails(meetupData: MeetupsType) {
                         <button class="join-event-btn">Bli med!</button>
                     </div>
                 </div>
-            </div>
-
-        `;
+                `;
   }
 }

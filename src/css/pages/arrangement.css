@@ -15,4 +15,50 @@
     gap: 20px;
     padding: 20px;;
   }
+
+  #event-container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  gap: 20px;
+  padding: 20px;
+  width: min(1200px, 100%);
+  box-sizing: border-box;
+  }
+
+  #event-tags {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    text-wrap: nowrap;
+    gap: 20px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  #event-container .event-info-wrapper {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  #event-container .event-details-card {
+    flex: 0 0 400px;
+    margin: 0;
+  }
+
+  @media (max-width: 900px) {
+    #event-container {
+      flex-direction: column;
+      flex-wrap: nowrap;
+      align-items: stretch;
+    }
+
+    #event-container .event-details-card {
+      width: min(400px, 100%);
+      align-self: center;
+    }
+  }
 }
