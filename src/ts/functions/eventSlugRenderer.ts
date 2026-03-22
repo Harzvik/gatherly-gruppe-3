@@ -13,7 +13,7 @@ export async function renderEventDetails(meetupData: MeetupsType) {
             <p class="event-description">${meetupData.description}</p>
             <div class="event-details-card">
                 <img src="../../../public/assets/component_assets/cyan_tape/tape3.webp" alt="Blå teipbit" class="event-image"/>
-                <img src="" alt="${meetupData.name}" class="event-image"/>
+                <img src="../../../public/assets/default_event_img.jpeg" alt="${meetupData.name}" class="event-image"/>
                 <div class="event-date">
                     <img src="../../../public/assets/component_assets/icons/calender_1.webp" alt="Kalender ikon" class="calender_1"/>
                     <p>${meetupData.date}</p>

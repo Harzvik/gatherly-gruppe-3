@@ -47,8 +47,6 @@
     font-size: var(--fs-body);
     font-weight: var(--fw-regular);
     padding: 0.1rem 0.6rem;
-    border: 1px solid;
-    border-radius: 2rem;
   }
 
   .like-event-btn {

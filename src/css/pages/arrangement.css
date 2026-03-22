@@ -6,11 +6,12 @@
 @import url("../components/eventActionBar.css") layer(eventActionBar);
 @import url("../components/header.css") layer(header);
 
-.event-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-  padding: 20px;
+@layer base {
+  .event-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;;
+  }
 }
-
