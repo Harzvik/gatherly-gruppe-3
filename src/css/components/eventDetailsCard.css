@@ -1,2 +1,57 @@
-/* Alex Harsvik */
+@import "../variables.css";
 
+.event-details-card {
+  position: relative;
+  width: 400px;
+  margin: 2rem;
+  overflow: visible;
+}
+
+.event-details-mask {
+  aspect-ratio: 0.84 / 1;
+  background: url("../../../public/assets/component_assets/cards/card_1.webp") center / 100% 100% no-repeat;
+  mask: url("../../../public/assets/component_assets/cards/card_1.webp") center / 100% 100% no-repeat;
+  -webkit-mask: url("../../../public/assets/component_assets/cards/card_1.webp") center / 100% 100% no-repeat;
+  padding: 0;
+}
+
+.event-tape {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -45%);
+  width: 140px;
+  z-index: 3;
+}
+
+.event-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.event-date,
+.event-location {
+display: flex;
+align-items: center;
+justify-content: flex-start;
+width: 100%;
+gap: 0.5rem;
+padding-left: 3rem;
+padding-top: 1.6rem;
+margin: 0;
+font-family: var(--font-main);
+font-size: var(--fs-header);
+font-weight: var(--fw-bold);
+}
+
+.event-date p,
+.event-location p {
+margin: 0.3rem;
+}
+
+.event-date img,
+.event-location img {
+width: 1.5rem;
+height: auto;
+}
