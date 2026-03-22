@@ -1,11 +1,12 @@
 /* Alex Harsvik */
-@layer reset, base, header, eventDetailsCard, eventActionBar;
+@layer reset, base, header, eventDetailsCard, eventActionBar, comments;
 
 @import url("../variables.css");
 @import url("../reset.css") layer(reset);
 @import url("../components/eventActionBar.css") layer(eventActionBar);
 @import url("../components/header.css") layer(header);
 @import url("../components/eventDetailsCard.css") layer(eventDetailsCard);
+@import url("../components/comments.css") layer(comments);
 
 @layer base {
   .event-wrapper {

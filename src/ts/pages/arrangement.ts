@@ -37,7 +37,8 @@ form.addEventListener(`submit`, async (event) => {
   event.preventDefault();
     let userId = 1; // Placeholder
 
-    const postText = (document.querySelector("#post-text") as HTMLTextAreaElement).value;
+    const postText = (document.querySelector("#post-text") as HTMLInputElement)
+      .value;
     console.log(`You entered post text: ${postText}`);
 
     const newPost: PostsType = {
@@ -55,7 +56,7 @@ form.addEventListener(`submit`, async (event) => {
 
     try {
         await createPost(newPost);
-        (document.querySelector("#post-text") as HTMLTextAreaElement).value = "";
+        (document.querySelector("#post-text") as HTMLInputElement).value = "";
         renderPostsForMeetup(meetupId);
 
     } catch (error) {
