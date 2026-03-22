@@ -10,7 +10,7 @@ export async function renderEventDetails(meetupData: MeetupsType) {
                     ${meetupData.tags.map((tag) => `<li>${tag}</li>`).join("")}
                 </ul>
                 <h1 class="event-title">${meetupData.name}</h1>
-                <p><strong>Opprettet av:</strong> Placeholder bruker </p>
+                <p class="event-creator"><strong>Opprettet av:</strong> Placeholder bruker </p>
                 <p class="event-description">${meetupData.description}</p>
             </div>
             <div class="event-details-card">

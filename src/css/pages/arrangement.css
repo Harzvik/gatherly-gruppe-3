@@ -22,21 +22,53 @@
   align-items: flex-start;
   justify-content: space-between;
   flex-wrap: nowrap;
-  gap: 20px;
-  padding: 20px;
+  gap: 1rem;
+  padding: 1.2rem;
   width: min(1200px, 100%);
   box-sizing: border-box;
-  }
+
+  .event-title {
+     font-family: var(--font-header);
+     font-size: var(--fs-title);
+     font-weight: var(--fw-bold);
+     margin: 2rem 0 1rem 0;
+   }
+
+   .event-creator {
+     font-family: var(--font-main);
+     font-size: var(--fs-header);
+     font-weight: var(--fw-regular);
+     margin: 2rem 0;
+   }
+
+   .event-description {
+     font-family: var(--font-main);
+     font-size: var(--fs-sub);
+     font-weight: var(--fw-regular);
+     margin: 0 0 2rem 0;
+   }
+}
 
   #event-tags {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     text-wrap: nowrap;
-    gap: 20px;
+    gap: 1rem;
     padding: 0;
     margin: 0;
     list-style: none;
+
+    li {
+      background-image: url("../../../public/assets/component_assets/icons/tag_red_filled.webp");
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      font-family: var(--font-main);
+      font-size: var(--fs-sub);
+      font-weight: var(--fw-bold);
+      color: white;
+      padding: 0.5rem 1rem;
+    }
   }
 
   #event-container .event-info-wrapper {
