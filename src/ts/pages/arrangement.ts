@@ -1,6 +1,6 @@
 /*Alex Harsvik*/
 import { getMeetupById } from "../api/meetupFetcher.ts";
-import { renderEventDetails } from "../functions/eventSlugRenderer.ts";
+import { renderEventActionBar, renderEventDetails } from "../functions/eventSlugRenderer.ts";
 import { HeaderComponent } from "../components/header.ts";
 import { renderPostForm } from "../functions/postFormRenderer.ts";
 import { getMeetupidFromURL } from "../functions/getMeetupidFromURL.ts";
@@ -18,6 +18,7 @@ console.log(`Fetched meetupId: ${meetupId}, with type: ${typeof meetupId}`);
 try {
   const meetupData = await getMeetupById(meetupId);
   renderEventDetails(meetupData);
+  renderEventActionBar(meetupData);
 } catch (error) {
   console.error("Ingen gyldig meetup ID funnet i URL-en.");
   const eventNotFound: HTMLElement | null =
@@ -36,7 +37,8 @@ form.addEventListener(`submit`, async (event) => {
   event.preventDefault();
     let userId = 1; // Placeholder
 
-    const postText = (document.querySelector("#post-text") as HTMLTextAreaElement).value;
+    const postText = (document.querySelector("#post-text") as HTMLInputElement)
+      .value;
     console.log(`You entered post text: ${postText}`);
 
     const newPost: PostsType = {
@@ -54,7 +56,7 @@ form.addEventListener(`submit`, async (event) => {
 
     try {
         await createPost(newPost);
-        (document.querySelector("#post-text") as HTMLTextAreaElement).value = "";
+        (document.querySelector("#post-text") as HTMLInputElement).value = "";
         renderPostsForMeetup(meetupId);
 
     } catch (error) {

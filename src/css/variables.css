@@ -5,10 +5,12 @@
   --color-secondary: #72D1D4;
   --color-background: #F9F3EA;
   --color-text: #000000;
+  --color-border: #bbbbbb;
 
   --font-header: 'Inria Serif', serif;
   --font-main: 'Sometype Mono', monospace;
 
+  --fs-title: 32px;
   --fs-header: 18px;
   --fs-sub: 16px;
   --fs-body: 12px;
