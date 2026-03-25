@@ -97,6 +97,27 @@
     filter: grayscale(100%);
 }
 
+.sticky-addBtn {
+    background-color: #EB4496;
+    border-radius: 50%;
+    width: 3.75rem;
+    height: 3.75rem;
+    border: none;
+
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sticky-addBtn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 14px rgba(0, 0, 0, 0.4);
+}
+
 @media (max-width: 768px) {
 
     .filter-section-wrapper {
