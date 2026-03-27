@@ -118,6 +118,13 @@
     box-shadow: 0 0 14px rgba(0, 0, 0, 0.4);
 }
 
+.event-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    padding: 2rem 3rem;
+}
+
 @media (max-width: 768px) {
 
     .filter-section-wrapper {
@@ -193,4 +200,8 @@
     .arrow-icon.active {
         transform: rotate(90deg);
     }
+
+    .event-grid {
+        grid-template-columns: 1fr;
+      }
 }
