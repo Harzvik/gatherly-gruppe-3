@@ -11,3 +11,13 @@ export async function getMeetupById(id: number) {
   const meetupData: MeetupsType = await response.json();
   return meetupData;
 }
+
+/* Eileen Kim */
+export async function getAllMeetups() {
+  const response = await fetch("http://localhost:3000/api/meetups");
+  if(!response.ok) {
+      throw new Error(`HTTP Error! Statuskode: ${response.status}`);
+  }
+  const meetups: MeetupsType[] = await response.json();
+  return meetups;
+}
