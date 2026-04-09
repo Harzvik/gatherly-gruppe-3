@@ -2,7 +2,7 @@
 import type { CommentsType } from "./commentsType";
 
 export type Post = {
-  id?: number;
+  id: number;
   meetupId: number;
   userId: number;
   postName: string;
