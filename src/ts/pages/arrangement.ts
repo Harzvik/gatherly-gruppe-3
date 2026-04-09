@@ -52,8 +52,16 @@ function setupPostFormSubmit(meetupId: number): void {
     event.preventDefault();
     const userId = 1; // Placeholder
 
-    const postText = (document.querySelector("#post-text") as HTMLInputElement)
-      .value;
+    const postTextInput = document.querySelector("#post-text");
+    if (!(postTextInput instanceof HTMLInputElement)) {
+      console.error("Fant ikke post-input feltet på siden.");
+      return;
+    }
+
+    const postText = postTextInput.value.trim();
+    if (!postText) {
+      return;
+    }
 
     const newPost: CreatePostInput = {
       meetupId,
@@ -64,7 +72,7 @@ function setupPostFormSubmit(meetupId: number): void {
 
     try {
       await createPost(newPost);
-      (document.querySelector("#post-text") as HTMLInputElement).value = "";
+      postTextInput.value = "";
       await renderPostsForMeetup(meetupId);
     } catch (error) {
       console.error("Feil ved oppretting av post:", error);
