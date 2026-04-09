@@ -7,7 +7,7 @@ import {
 import { HeaderComponent } from "../components/header.ts";
 import { renderPostForm } from "../functions/postFormRenderer.ts";
 import { getMeetupIdFromUrl } from "../functions/getMeetupidFromURL.ts";
-import type { PostsType } from "../types/postsType.ts";
+import type { CreatePostInput } from "../types/postsType.ts";
 import { createPost } from "../api/createPost.ts";
 import { renderPostsForMeetup } from "../functions/postRenderer.ts";
 
@@ -43,17 +43,11 @@ form.addEventListener(`submit`, async (event) => {
   const postText = (document.querySelector("#post-text") as HTMLInputElement)
     .value;
 
-  const newPost: PostsType = {
-    id: null,
+  const newPost: CreatePostInput = {
     meetupId: meetupId,
     userId: userId,
     postName: "",
     text: postText,
-    likes: 0,
-    dislikes: 0,
-    comments: [],
-    created: "",
-    updated: "",
   };
 
   try {

@@ -1,7 +1,7 @@
 /*Alex Harsvik*/
-import type { PostsType } from "../types/postsType";
+import type { CreatePostInput } from "../types/postsType";
 
-export async function createPost(newPostData: PostsType) {
+export async function createPost(newPostData: CreatePostInput) {
   const response = await fetch("http://localhost:3000/api/posts", {
     method: "POST",
     headers: {

@@ -1,5 +1,7 @@
 /*Alex Harsvik*/
-export async function getPostsForMeetup(meetupId: number) {
+import type { Post } from "../types/postsType";
+
+export async function getPostsForMeetup(meetupId: number): Promise<Post[]> {
   const response = await fetch(
     `http://localhost:3000/api/posts?meetupId=${meetupId}`,
   );
@@ -9,6 +11,6 @@ export async function getPostsForMeetup(meetupId: number) {
     );
   }
 
-  const postData = await response.json();
+  const postData: Post[] = await response.json();
   return postData;
 }
