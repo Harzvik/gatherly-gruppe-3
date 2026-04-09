@@ -11,8 +11,6 @@ import type { CreatePostInput } from "../types/postsType.ts";
 import { createPost } from "../api/createPost.ts";
 import { renderPostsForMeetup } from "../functions/postRenderer.ts";
 
-const meetupId = getMeetupIdFromUrl();
-
 customElements.define("g-header", HeaderComponent);
 
 function renderNotFoundState() {
@@ -24,51 +22,69 @@ function renderNotFoundState() {
   if (eventNotFound) {
     eventNotFound.style.display = "block";
   }
-
   postsContainer?.remove();
 }
 
-if (meetupId === null) {
-  renderNotFoundState();
-} else {
+async function loadMeetupAndRender(meetupId: number): Promise<boolean> {
   /* Prøv å hente meetup data og render på siden */
   try {
     const meetupData = await getMeetupById(meetupId);
     renderEventDetails(meetupData);
     renderEventActionBar(meetupData);
     renderPostForm();
-    renderPostsForMeetup(meetupId);
+    await renderPostsForMeetup(meetupId);
+    return true;
   } catch (error) {
     console.error("Ingen gyldig meetup ID funnet i URL-en.");
     renderNotFoundState();
+    return false;
   }
+}
 
+function setupPostFormSubmit(meetupId: number): void {
   const form = document.querySelector("#new-post-form");
   if (!(form instanceof HTMLFormElement)) {
     console.error("Fant ikke post-skjemaet på siden.");
-  } else {
-    form.addEventListener(`submit`, async (event) => {
-      event.preventDefault();
-      let userId = 1; // Placeholder
-
-      const postText = (
-        document.querySelector("#post-text") as HTMLInputElement
-      ).value;
-
-      const newPost: CreatePostInput = {
-        meetupId: meetupId,
-        userId: userId,
-        postName: "",
-        text: postText,
-      };
-
-      try {
-        await createPost(newPost);
-        (document.querySelector("#post-text") as HTMLInputElement).value = "";
-        renderPostsForMeetup(meetupId);
-      } catch (error) {
-        console.error("Feil ved oppretting av post:", error);
-      }
-    });
+    return;
   }
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const userId = 1; // Placeholder
+
+    const postText = (document.querySelector("#post-text") as HTMLInputElement)
+      .value;
+
+    const newPost: CreatePostInput = {
+      meetupId,
+      userId,
+      postName: "",
+      text: postText,
+    };
+
+    try {
+      await createPost(newPost);
+      (document.querySelector("#post-text") as HTMLInputElement).value = "";
+      await renderPostsForMeetup(meetupId);
+    } catch (error) {
+      console.error("Feil ved oppretting av post:", error);
+    }
+  });
 }
+
+async function initArrangementPage(): Promise<void> {
+  const meetupId = getMeetupIdFromUrl();
+  if (meetupId === null) {
+    renderNotFoundState();
+    return;
+  }
+
+  const meetupLoaded = await loadMeetupAndRender(meetupId);
+  if (!meetupLoaded) {
+    return;
+  }
+
+  setupPostFormSubmit(meetupId);
+}
+
+await initArrangementPage();
