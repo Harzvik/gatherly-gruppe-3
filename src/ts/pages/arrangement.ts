@@ -6,16 +6,14 @@ import {
 } from "../functions/eventSlugRenderer.ts";
 import { HeaderComponent } from "../components/header.ts";
 import { renderPostForm } from "../functions/postFormRenderer.ts";
-import { getMeetupidFromURL } from "../functions/getMeetupidFromURL.ts";
+import { getMeetupIdFromUrl } from "../functions/getMeetupidFromURL.ts";
 import type { PostsType } from "../types/postsType.ts";
 import { createPost } from "../api/createPost.ts";
 import { renderPostsForMeetup } from "../functions/postRenderer.ts";
 
-const meetupId = getMeetupidFromURL();
+const meetupId = getMeetupIdFromUrl();
 
 customElements.define("g-header", HeaderComponent);
-
-console.log(`Fetched meetupId: ${meetupId}, with type: ${typeof meetupId}`);
 
 /* Prøv å hente meetup data og render på siden */
 try {
@@ -44,7 +42,6 @@ form.addEventListener(`submit`, async (event) => {
 
   const postText = (document.querySelector("#post-text") as HTMLInputElement)
     .value;
-  console.log(`You entered post text: ${postText}`);
 
   const newPost: PostsType = {
     id: null,

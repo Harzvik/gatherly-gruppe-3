@@ -1,7 +1,7 @@
 /*Alex Harsvik*/
 import type { MeetupsType } from "../types/meetupType.ts";
 
-export async function renderEventDetails(meetupData: MeetupsType) {
+export function renderEventDetails(meetupData: MeetupsType) {
   const eventContainer = document.querySelector("#event-container");
   if (eventContainer) {
     eventContainer.innerHTML = `
@@ -33,7 +33,7 @@ export async function renderEventDetails(meetupData: MeetupsType) {
   }
 }
 
-export async function renderEventActionBar(meetupData: MeetupsType) {
+export function renderEventActionBar(meetupData: MeetupsType) {
   const eventContainer = document.querySelector("#event-action-bar");
   if (eventContainer) {
     eventContainer.innerHTML = `

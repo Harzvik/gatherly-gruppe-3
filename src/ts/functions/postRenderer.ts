@@ -10,7 +10,7 @@ export async function renderPostsForMeetup(meetupId: number) {
     ) as HTMLElement;
     if (postsListContainer) {
       postsListContainer.innerHTML = "";
-      posts.map((post: any) => {
+      posts.forEach((post: any) => {
         const postElement = document.createElement("div");
         postElement.classList.add("post");
         postElement.textContent = post.text;
