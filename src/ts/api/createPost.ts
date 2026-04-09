@@ -1,8 +1,8 @@
 /*Alex Harsvik*/
 import { API_BASE_URL, API_KEY } from "./config";
-import type { CreatePostInput } from "../types/postsType";
+import type { CreatePostInput, Post } from "../types/postsType";
 
-export async function createPost(newPostData: CreatePostInput) {
+export async function createPost(newPostData: CreatePostInput): Promise<Post> {
   const response = await fetch(`${API_BASE_URL}/posts`, {
     method: "POST",
     headers: {
@@ -15,7 +15,8 @@ export async function createPost(newPostData: CreatePostInput) {
     throw new Error(
       `HTTP error! status: ${response.status} ved oppretting av post`,
     );
-  } else {
-    console.log("Post opprettet med data:", newPostData);
   }
+
+  const createdPost: Post = await response.json();
+  return createdPost;
 }
