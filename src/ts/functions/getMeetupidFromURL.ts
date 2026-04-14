@@ -1,11 +1,16 @@
 /*Alex Harsvik*/
-export function getMeetupidFromURL(): number {
+export function getMeetupIdFromUrl(): number | null {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
-  const meetupId = Number(urlParams.get("id"));
+  const idParam = urlParams.get("id");
+  if (!idParam) {
+    return null;
+  }
+  const meetupId = Number(idParam);
 
-  console.log(
-    `Got meetupId: ${meetupId} from URL, with type: ${typeof meetupId}`,
-  );
+  if (!Number.isInteger(meetupId) || meetupId <= 0) {
+    return null;
+  }
+
   return meetupId;
 }

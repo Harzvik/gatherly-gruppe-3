@@ -1,8 +1,8 @@
 /*Alex Harsvik*/
 import type { CommentsType } from "./commentsType";
 
-export type PostsType = {
-  id: number | null;
+export type Post = {
+  id: number;
   meetupId: number;
   userId: number;
   postName: string;
@@ -12,4 +12,11 @@ export type PostsType = {
   comments: CommentsType[];
   created: string;
   updated: string;
+};
+
+export type CreatePostInput = {
+  meetupId: number;
+  userId: number;
+  postName: string;
+  text: string;
 };

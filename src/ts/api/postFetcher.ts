@@ -1,14 +1,15 @@
 /*Alex Harsvik*/
-export async function getPostsForMeetup(meetupId: number) {
-  const response = await fetch(
-    `http://localhost:3000/api/posts?meetupId=${meetupId}`,
-  );
+import { API_BASE_URL } from "./config";
+import type { Post } from "../types/postsType";
+
+export async function getPostsForMeetup(meetupId: number): Promise<Post[]> {
+  const response = await fetch(`${API_BASE_URL}/posts?meetupId=${meetupId}`);
   if (!response.ok) {
     throw new Error(
       `HTTP error! status: ${response.status} ved henting av posts for meetup med id ${meetupId}`,
     );
   }
 
-  const postData = await response.json();
+  const postData: Post[] = await response.json();
   return postData;
 }

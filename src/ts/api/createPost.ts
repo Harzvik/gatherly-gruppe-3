@@ -1,12 +1,13 @@
 /*Alex Harsvik*/
-import type { PostsType } from "../types/postsType";
+import { API_BASE_URL, API_KEY } from "./config";
+import type { CreatePostInput, Post } from "../types/postsType";
 
-export async function createPost(newPostData: PostsType) {
-  const response = await fetch("http://localhost:3000/api/posts", {
+export async function createPost(newPostData: CreatePostInput): Promise<Post> {
+  const response = await fetch(`${API_BASE_URL}/posts`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: "Bearer kalle123", // Placeholder API key
+      Authorization: `Bearer ${API_KEY}`,
     },
     body: JSON.stringify(newPostData),
   });
@@ -14,7 +15,8 @@ export async function createPost(newPostData: PostsType) {
     throw new Error(
       `HTTP error! status: ${response.status} ved oppretting av post`,
     );
-  } else {
-    console.log("Post opprettet med data:", newPostData);
   }
+
+  const createdPost: Post = await response.json();
+  return createdPost;
 }

@@ -6,64 +6,93 @@ import {
 } from "../functions/eventSlugRenderer.ts";
 import { HeaderComponent } from "../components/header.ts";
 import { renderPostForm } from "../functions/postFormRenderer.ts";
-import { getMeetupidFromURL } from "../functions/getMeetupidFromURL.ts";
-import type { PostsType } from "../types/postsType.ts";
+import { getMeetupIdFromUrl } from "../functions/getMeetupidFromURL.ts";
+import type { CreatePostInput } from "../types/postsType.ts";
 import { createPost } from "../api/createPost.ts";
 import { renderPostsForMeetup } from "../functions/postRenderer.ts";
 
-const meetupId = getMeetupidFromURL();
-
 customElements.define("g-header", HeaderComponent);
 
-console.log(`Fetched meetupId: ${meetupId}, with type: ${typeof meetupId}`);
-
-/* Prøv å hente meetup data og render på siden */
-try {
-  const meetupData = await getMeetupById(meetupId);
-  renderEventDetails(meetupData);
-  renderEventActionBar(meetupData);
-  renderPostForm();
-  renderPostsForMeetup(meetupId);
-} catch (error) {
-  console.error("Ingen gyldig meetup ID funnet i URL-en.");
+function renderNotFoundState() {
   const eventNotFound: HTMLElement | null =
     document.querySelector("#event-not-found");
   const postsContainer: HTMLElement | null =
     document.querySelector("#posts-container");
+
   if (eventNotFound) {
     eventNotFound.style.display = "block";
-    postsContainer?.remove();
+  }
+  postsContainer?.remove();
+}
+
+async function loadMeetupAndRender(meetupId: number): Promise<boolean> {
+  /* Prøv å hente meetup data og render på siden */
+  try {
+    const meetupData = await getMeetupById(meetupId);
+    renderEventDetails(meetupData);
+    renderEventActionBar(meetupData);
+    renderPostForm();
+    await renderPostsForMeetup(meetupId);
+    return true;
+  } catch (error) {
+    console.error("Ingen gyldig meetup ID funnet i URL-en.");
+    renderNotFoundState();
+    return false;
   }
 }
 
-const form = document.querySelector("#new-post-form") as HTMLFormElement;
-
-form.addEventListener(`submit`, async (event) => {
-  event.preventDefault();
-  let userId = 1; // Placeholder
-
-  const postText = (document.querySelector("#post-text") as HTMLInputElement)
-    .value;
-  console.log(`You entered post text: ${postText}`);
-
-  const newPost: PostsType = {
-    id: null,
-    meetupId: meetupId,
-    userId: userId,
-    postName: "",
-    text: postText,
-    likes: 0,
-    dislikes: 0,
-    comments: [],
-    created: "",
-    updated: "",
-  };
-
-  try {
-    await createPost(newPost);
-    (document.querySelector("#post-text") as HTMLInputElement).value = "";
-    renderPostsForMeetup(meetupId);
-  } catch (error) {
-    console.error("Feil ved oppretting av post:", error);
+function setupPostFormSubmit(meetupId: number): void {
+  const form = document.querySelector("#new-post-form");
+  if (!(form instanceof HTMLFormElement)) {
+    console.error("Fant ikke post-skjemaet på siden.");
+    return;
   }
-});
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const userId = 1; // Placeholder
+
+    const postTextInput = document.querySelector("#post-text");
+    if (!(postTextInput instanceof HTMLInputElement)) {
+      console.error("Fant ikke post-input feltet på siden.");
+      return;
+    }
+
+    const postText = postTextInput.value.trim();
+    if (!postText) {
+      return;
+    }
+
+    const newPost: CreatePostInput = {
+      meetupId,
+      userId,
+      postName: "",
+      text: postText,
+    };
+
+    try {
+      await createPost(newPost);
+      postTextInput.value = "";
+      await renderPostsForMeetup(meetupId);
+    } catch (error) {
+      console.error("Feil ved oppretting av post:", error);
+    }
+  });
+}
+
+async function initArrangementPage(): Promise<void> {
+  const meetupId = getMeetupIdFromUrl();
+  if (meetupId === null) {
+    renderNotFoundState();
+    return;
+  }
+
+  const meetupLoaded = await loadMeetupAndRender(meetupId);
+  if (!meetupLoaded) {
+    return;
+  }
+
+  setupPostFormSubmit(meetupId);
+}
+
+await initArrangementPage();
