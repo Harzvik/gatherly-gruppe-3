@@ -1,6 +1,7 @@
 import { CardComponent } from "../components/card.ts";
 import { HeaderComponent } from "../components/header.ts";
 import { getAllMeetups } from "../api/meetupFetcher.ts";
+import { setupCreateModal } from "../functions/modalRenderer.ts";
 import type { MeetupsType } from "../types/meetupType.ts";
 
 customElements.define("g-header", HeaderComponent);
@@ -26,3 +27,5 @@ async function loadEvents() {
 }
 
 loadEvents();
+
+setupCreateModal(renderCards);

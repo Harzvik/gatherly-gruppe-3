@@ -3,6 +3,7 @@
 @import "../variables.css";
 @import "../reset.css";
 @import "../components/header.css";
+@import "../components/card.css";
 
 .explore-header {
     font-family: var(--font-header);
@@ -205,3 +206,164 @@
         grid-template-columns: 1fr;
       }
 }
+
+/*
+    MODAL!!!
+*/
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-overlay.hidden {
+    display: none;
+}
+
+.modal-box {
+    background-color: var(--color-background);
+    padding: 2rem;
+    position: relative;
+    border: 2px solid var(--color-text);
+    width: 80%;
+}
+
+.modal-layout {
+    display: grid;
+    grid-template-columns: 1fr 1px 1fr;
+    gap: 2rem;
+}
+
+/*
+    FORM PÅ HØYRESIDEN
+*/
+
+.modal-left h2{
+    font-family: var(--font-main);
+    font-size: var(--fs-header);
+    margin: 1 0 1.5rem 0;
+    text-transform: uppercase;
+}
+
+.modal-divider {
+    background-color: grey;
+    width: 1px;
+}
+
+.modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    label {
+        font-family: var(--font-header);
+        font-size: var(--fs-h);
+        font-weight: bolder;
+        margin-top: 0.5rem;
+    }
+
+    input, textarea {
+        font-family: var(--font-header);
+        font-size: var(--fs-sub);
+        padding: 0.6rem 0.8rem;
+        border: 1.5px solid var(--color-text);
+        width: 95%;
+    }
+}
+
+#modal-close {
+    font-size: 1.3rem;
+    font-weight: bold;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    border: none;
+    background: none;
+}
+
+#modal-submit {
+    font-family: var(--font-header);
+    font-size: var(--fs-sub);
+    font-weight: var(--fw-bold);
+    background-color: var(--color-primary);
+    color: white;
+    border: none;
+    padding: 0.8rem;
+    margin-top: 1rem;
+    width: 100%;
+}
+
+#modal-submit:hover{
+    opacity: 0.85;
+    transform: scale(1.03);
+}
+
+.modal-error {
+    font-family: var(--font-main);
+    color: red;
+    margin: 0;
+}
+
+.modal-error.hidden {
+    display: none;
+}
+
+/*
+    FORHÅNDSVISNING
+*/
+
+.modal-right {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+
+    h3 {
+        align-self: flex-start;
+        font-family: var(--font-main);
+        font-size: var(--fs-header);
+    
+        margin: 1 0 1.5rem 0;
+        text-transform: uppercase;
+    }
+
+    div {
+        margin-top: 1rem;
+    }
+}
+
+/*
+    PREVIEW CARDS
+*/
+
+.preview-card {
+    display: flex;
+    flex-direction: column;
+    padding: 2.5rem 1.5rem 1.5rem 1.5rem;
+    width: 18.75rem;
+    height: 25rem;
+    background-image: url('/assets/component_assets/cards/card_3.webp');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    position: relative;    
+    box-sizing: border-box;
+}
+
+.preview-card:hover{
+    animation: dingle 1500ms linear infinite;
+}
+
+@keyframes dingle {
+    0%   { transform: rotate(0deg); }
+    25%  { transform: rotate(5deg); }
+    75%  { transform: rotate(-5deg); }
+    100% { transform: rotate(0deg); }
+}
+
+
+
