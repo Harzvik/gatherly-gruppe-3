@@ -1,5 +1,5 @@
 /*Alex Harsvik*/
-import { API_BASE_URL } from "./config";
+import { API_BASE_URL, API_KEY } from "./config";
 import type { MeetupsType } from "../types/meetupType";
 
 export async function getMeetupById(id: number) {
@@ -15,7 +15,12 @@ export async function getMeetupById(id: number) {
 
 /* Eileen Kim */
 export async function getAllMeetups() {
-  const response = await fetch("http://localhost:3000/api/meetups");
+  const response = await fetch("http://localhost:3000/api/meetups", {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${API_KEY}`,
+    },
+  });
   if(!response.ok) {
       throw new Error(`HTTP Error! Statuskode: ${response.status}`);
   }

@@ -21,11 +21,38 @@ function renderCards(meetups: MeetupsType[]) {
     })
 }
 
+async function setupTagFilters() {
+    const meetups = await getAllMeetups();
+    const tagBtns = document.querySelectorAll(".tag-btn");
+
+    tagBtns.forEach(button => {
+        button.addEventListener("click", (e) => {
+            const tag = (e.target as HTMLElement).textContent?.trim() ?? "";
+
+            if(button.classList.contains("active")) {
+                button.classList.remove("active");
+                renderCards(meetups);
+                return;
+            }
+
+            tagBtns.forEach(btn => btn.classList.remove("active"));
+
+            button.classList.add("active");
+
+            const filtered = meetups.filter(meetup => meetup.tags.includes(tag));
+            renderCards(filtered);
+        })
+    })
+
+} 
+
+
 async function loadEvents() {
     const meetups = await getAllMeetups();
     renderCards(meetups);
 }
 
 loadEvents();
-
 setupCreateModal(renderCards);
+setupTagFilters();
+
