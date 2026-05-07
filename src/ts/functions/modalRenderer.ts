@@ -94,6 +94,45 @@ export function setupCreateModal(renderCards: RenderCardsFn): void {
         }
     });
 
+    document.getElementById("modal-submit")?.addEventListener("click", async() => {
+        const name = (document.getElementById("modal-title") as HTMLInputElement).value.trim();
+        const description = (document.getElementById("modal-description") as HTMLTextAreaElement).value.trim();
+        const location = (document.getElementById("modal-location") as HTMLInputElement).value;
+        const date = (document.getElementById("modal-date") as HTMLInputElement).value;
+        const chosentag = (document.getElementById("tag-select") as HTMLSelectElement).value;
+        const tags = [chosentag];
+        
+        if (!name || !description || !location || !date || !chosentag) {
+            const errorAlarm = document.getElementById("modal-error");
+            errorAlarm?.classList.remove("hidden");
+            errorAlarm!.textContent = "Fyll ut alle obligatoriske felt!";
+            return;            
+        }
+
+        try {
+            await createMeetup({
+                name,
+                description,
+                location,
+                date,
+                tags,
+                created: new Date().toISOString(),
+                updated: new Date().toISOString()
+            });
+
+            closeModal();
+
+            const meetups = await getAllMeetups();
+            renderCards(meetups);
+        } catch(error) {
+            console.error("Feil ved oppretting:", error);
+            const errorAlarm = document.getElementById("modal-error");
+            errorAlarm?.classList.remove("hidden");
+            errorAlarm!.textContent = "Noe gikk galt her, prøv igjen!";
+        }
+    });
+
+
     const openBtn = document.querySelector(".sticky-addBtn");
     openBtn?.addEventListener("click", ()=> {
         modal.classList.remove("hidden");

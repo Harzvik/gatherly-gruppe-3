@@ -1,13 +1,13 @@
 /* Eileen Kim */
-
+import { API_BASE_URL, API_KEY } from "./config";
 import type { MeetupsType } from "../types/meetupType";
 
 export async function createMeetup(newMeetupData: Omit<MeetupsType, "id">) {
-    const response = await fetch("http://localhost:3000/api/meetups", {
+    const response = await fetch(`${API_BASE_URL}/meetups`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
-            Authorization: "Bearer 676767",
+            Authorization: `Bearer ${API_KEY}`,
         },
         body: JSON.stringify(newMeetupData),
     });
