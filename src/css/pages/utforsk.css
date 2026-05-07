@@ -55,6 +55,12 @@
     justify-content: center;
 }
 
+.tag-btn.active {
+    background: url('/assets/component_assets/icons/tag_red_filled.webp');
+    background-size: 100% 100%;
+    color: white;
+}
+
 .arrow-icon {
     background: url('/assets/component_assets/black_markings/arrow_noline2.webp');
     background-size: 100% 100%;
