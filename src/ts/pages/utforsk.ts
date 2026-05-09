@@ -2,10 +2,13 @@ import { CardComponent } from "../components/card.ts";
 import { HeaderComponent } from "../components/header.ts";
 import { getAllMeetups } from "../api/meetupFetcher.ts";
 import { setupCreateModal } from "../functions/modalRenderer.ts";
+import { setupPreveiwModal, openPreviewModal } from "../functions/previewModalRenderer.ts";
 import type { MeetupsType } from "../types/meetupType.ts";
 
 customElements.define("g-header", HeaderComponent);
 customElements.define("g-card", CardComponent);
+
+const currentUserId = 1;
 
 function renderCards(meetups: MeetupsType[]) {
     const grid = document.getElementById("event-grid");
@@ -17,8 +20,15 @@ function renderCards(meetups: MeetupsType[]) {
         card.setAttribute("title", meetup.name);
         card.setAttribute("time", meetup.date);
         card.setAttribute("tag", meetup.tags[0] ?? "");
+
+        card.addEventListener("click", () => {
+            openPreviewModal(meetup, currentUserId);
+        });
+
+        card.style.cursor = "pointer";
         grid.appendChild(card);
     })
+
 }
 
 async function setupTagFilters() {
@@ -53,6 +63,7 @@ async function loadEvents() {
 }
 
 loadEvents();
-setupCreateModal(renderCards);
+setupCreateModal(renderCards, currentUserId);
 setupTagFilters();
+setupPreveiwModal();
 

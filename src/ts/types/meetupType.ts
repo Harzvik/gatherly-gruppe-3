@@ -1,6 +1,7 @@
 /*Alex Harsvik*/
 export type MeetupsType = {
   id: number;
+  userId: number;
   name: string;
   description: string;
   location: string;
