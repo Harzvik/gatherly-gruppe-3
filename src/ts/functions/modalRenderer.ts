@@ -1,10 +1,11 @@
+/* Eileen Kim */
 import { createMeetup } from "../api/createMeetup";
 import { getAllMeetups } from "../api/meetupFetcher";
 import type { MeetupsType } from "../types/meetupType";
 
 type RenderCardsFn = (meetups: MeetupsType[]) => void;
 
-export function setupCreateModal(renderCards: RenderCardsFn): void {
+export function setupCreateModal(renderCards: RenderCardsFn, currentUserId: number): void {
     // Lager først div og legger den i body. Den starter som "hidden".
     const modal = document.createElement("div");
     modal.id = "create-modal";
@@ -116,6 +117,7 @@ export function setupCreateModal(renderCards: RenderCardsFn): void {
                 location,
                 date,
                 tags,
+                userId: currentUserId,
                 created: new Date().toISOString(),
                 updated: new Date().toISOString()
             });
