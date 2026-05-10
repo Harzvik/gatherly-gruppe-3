@@ -2,6 +2,8 @@
 
 import { openEditModal } from "./editModalRenderer";
 import type { MeetupsType } from "../types/meetupType";
+import { deleteMeetup } from "../api/deleteMeetup";
+import { getAllMeetups } from "../api/meetupFetcher";
 
 type RenderCardsFn = (meetups: MeetupsType[]) => void;
 
@@ -71,4 +73,17 @@ export function openPreviewModal(meetup: MeetupsType, currentUserId: number, ren
         document.getElementById("edit-btn")?.addEventListener("click", ()=> {
             openEditModal(meetup, renderCards);
         });
+
+        document.getElementById("delete-btn")?.addEventListener("click", async () => {
+            try {
+                await deleteMeetup(meetup.id);
+                modal.classList.add("hidden");
+                const meetups = await getAllMeetups();
+                renderCards(meetups);
+            }catch (error) {
+                console.error("Feil ved sletting:", error);
+            }
+
+        })
+
 }
