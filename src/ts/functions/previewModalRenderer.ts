@@ -1,6 +1,9 @@
 /* Eileen Kim */
 
+import { openEditModal } from "./editModalRenderer";
 import type { MeetupsType } from "../types/meetupType";
+
+type RenderCardsFn = (meetups: MeetupsType[]) => void;
 
 export function setupPreveiwModal(): void {
     const modal = document.createElement("div");
@@ -13,7 +16,7 @@ export function setupPreveiwModal(): void {
     });
 }
 
-export function openPreviewModal(meetup: MeetupsType, currentUserId: number): void {
+export function openPreviewModal(meetup: MeetupsType, currentUserId: number, renderCards: RenderCardsFn): void {
     const modal = document.getElementById("preview-modal");
     if(!modal) return;
 
@@ -60,7 +63,12 @@ export function openPreviewModal(meetup: MeetupsType, currentUserId: number): vo
         });
 
         modal.classList.remove("hidden");
-        document.getElementById("preview-close")?.addEventListener("click", () => {
+
+        document.getElementById("modal-close")?.addEventListener("click", () => {
             modal.classList.add("hidden");
+        });
+
+        document.getElementById("edit-btn")?.addEventListener("click", ()=> {
+            openEditModal(meetup, renderCards);
         });
 }

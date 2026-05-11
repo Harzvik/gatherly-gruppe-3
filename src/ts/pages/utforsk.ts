@@ -22,7 +22,7 @@ function renderCards(meetups: MeetupsType[]) {
         card.setAttribute("tag", meetup.tags[0] ?? "");
 
         card.addEventListener("click", () => {
-            openPreviewModal(meetup, currentUserId);
+            openPreviewModal(meetup, currentUserId, renderCards);
         });
 
         card.style.cursor = "pointer";
