@@ -32,6 +32,9 @@ export function setupCreateModal(renderCards: RenderCardsFn, currentUserId: numb
                             <option value="Sport">Sport</option>
                             <option value="Håndverk">Håndverk</option>
                             <option value="Gaming">Gaming</option>
+                            <option value="Reise">Reise</option>
+                            <option value="Helse">Helse</option>
+                            <option value="Business">Business</option>
 
                         </select>
         
