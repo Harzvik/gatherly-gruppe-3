@@ -309,6 +309,14 @@
         border: 1.5px solid var(--color-text);
         width: 95%;
     }
+
+    select {
+        font-family: var(--font-header);
+        font-size: var(--fs-sub);
+        padding: 0.6rem;
+        border: 1.5px solid var(--color-text);
+        width: 100%;
+    }
 }
 
 #modal-close {
