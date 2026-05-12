@@ -56,6 +56,45 @@ async function setupTagFilters() {
 
 } 
 
+function filterUpcomingWeek(meetups: MeetupsType[]): MeetupsType[] {
+    const today = new Date();
+    const nextweek = new Date();
+    
+    nextweek.setDate(today.getDate() + 7);
+
+    return meetups.filter(meetup => {
+        const meetupDate = new Date(meetup.date);
+        return meetupDate >= today && meetupDate <= nextweek;
+    });
+}
+
+async function setupUpcomingFilter() {
+    const meetups = await getAllMeetups();
+    const upcomingBtn = document.querySelector(".dropdown-btn");
+
+    upcomingBtn?.addEventListener("click", async () => {
+        const meetups = await getAllMeetups();
+
+        if(upcomingBtn?.classList.contains("active")) {
+            upcomingBtn.classList.remove("active");
+            renderCards(meetups);
+        } else {
+            upcomingBtn?.classList.add("active");
+            const filtered = filterUpcomingWeek(meetups);
+            renderCards(filtered);
+        }
+    });
+}
+
+function setupExpandBtn() {
+    const expandBtn = document.getElementById("expandBtn");
+    const tagContainer = document.getElementById("tagContainer");
+    
+    expandBtn?.addEventListener("click", ()=> {
+        tagContainer?.classList.toggle("expanded");
+        expandBtn.classList.toggle("active");
+    }); 
+}
 
 async function loadEvents() {
     const meetups = await getAllMeetups();
@@ -66,4 +105,5 @@ loadEvents();
 setupCreateModal(renderCards, currentUserId);
 setupTagFilters();
 setupPreveiwModal();
-
+setupUpcomingFilter();
+setupExpandBtn();
