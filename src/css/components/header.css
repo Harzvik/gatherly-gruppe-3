@@ -69,9 +69,71 @@
     width: 100%;
 }
 
+.hamburger {
+    display: none;
+}
+
 /* 
     MOBIL SKJERMER
 */
 @media (max-width: 768px) {
-    /* her skal det jo være hamburger meny + profil-icon på siden*/
+    .hamburger {
+        border: none;
+        background-color: transparent;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .hamburger img {
+        width: 2rem;
+        height: auto;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .nav-links.open {
+        gap: 3rem;
+        top: 5rem;
+        right: 0;
+        width: 100%;
+        background-color: var(--color-background);
+        z-index: 1;
+        padding: 1rem 2rem;
+        border: 1px solid var(--color-text);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        animation: smoothSlide 0.3s ease;
+    }
+
+    .nav-container{
+        padding: 0 1.5rem;
+        position: relative;
+    }
+
+    body.menu-open main {
+        filter: blur(3px);
+        transition: filter 0.3s ease;
+    }
+
+    .logo-wrapper img {
+        height: 2.5rem;
+    }
+
+    @keyframes smoothSlide {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
 }
