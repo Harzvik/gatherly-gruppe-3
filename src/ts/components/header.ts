@@ -1,6 +1,10 @@
 /*Alex Harsvik og Eileen Kim*/
+import { setCurrentUserId, getCurrentUsername } from "../functions/userManagement";
+
 export class HeaderComponent extends HTMLElement {
     connectedCallback(): void {
+        const username = getCurrentUsername();
+        
         this.innerHTML = `
             <header class="main-header">
                 <nav class="nav-container">
@@ -20,8 +24,13 @@ export class HeaderComponent extends HTMLElement {
                         <li style="display: none;">
                             <a href="../minSide.html" class="nav-item">Min Side</a>
                         </li>
-                        <li>
-                            <a href="../loggInn.html" class="nav-item">Logg inn</a>
+                        <li style="position: relative;">
+                            <a href="#" class="nav-item" id="login-btn">${username}</a>
+                            <ul id="user-switcher-dropdown" class="user-switcher" style="display: none;">
+                                <li data-userid="1">User 1</li>
+                                <li data-userid="2">User 2</li>
+                                <li data-userid="3">User 3</li>
+                            </ul>
                         </li>
                     </ul>
                     <button class="hamburger" id="hamburger-btn">
@@ -33,6 +42,7 @@ export class HeaderComponent extends HTMLElement {
         `;
         this.setActiveLink();
         this.setupHamburger();
+        this.setupUserSwitcher();
     }
 
     private setActiveLink(): void {
@@ -63,6 +73,27 @@ export class HeaderComponent extends HTMLElement {
         hamburger?.addEventListener("click", () => {
             navLinks?.classList.toggle("open");
             document.body.classList.toggle("menu-open");
+        });
+    }
+
+    private setupUserSwitcher(): void {
+        const loginBtn = this.querySelector("#login-btn") as HTMLElement;
+        const dropdown = this.querySelector("#user-switcher-dropdown") as HTMLElement;
+        const userItems = this.querySelectorAll("#user-switcher-dropdown li");
+
+        loginBtn?.addEventListener("click", (e) => {
+            e.preventDefault();
+            dropdown.style.display = dropdown.style.display === "none" ? "block" : "none";
+        });
+
+        userItems.forEach(item => {
+            item.addEventListener("click", () => {
+                const userId = item.getAttribute("data-userid");
+                if (userId) {
+                    setCurrentUserId(parseInt(userId, 10));
+                    window.location.reload();
+                }
+            });
         });
     }
 }
