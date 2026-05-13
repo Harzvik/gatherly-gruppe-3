@@ -2,6 +2,8 @@
 import { getPostsForMeetup } from "../api/postFetcher";
 import { deletePost } from "../api/deletePost";
 import { deleteComment } from "../api/deleteComment";
+import { updatePost } from "../api/updatePost";
+import { updateComment } from "../api/updateComment";
 import type { Post } from "../types/postsType";
 import type { CommentsType } from "../types/commentsType";
 import { formatDate } from "./dateFormatter";
@@ -55,10 +57,36 @@ export async function renderPostsForMeetup(meetupId: number) {
         actions.appendChild(replyBtn);
 
         if (post.userId === currentUserId) {
+          //edit knapp
           const editBtn = document.createElement("button");
           editBtn.textContent = "Edit";
           editBtn.classList.add("btn-edit");
+          editBtn.addEventListener("click", async () => {
+            const isEditing = body.querySelector("input");
+            if (isEditing) {
+              const inputField = body.querySelector("input") as HTMLInputElement;
+              const newText = inputField.value;
+              if (newText.trim() === "") return alert("Posten kan ikke være tom.");
+              
+              try {
+                await updatePost(post.id, { ...post, text: newText });
+                renderPostsForMeetup(meetupId);
+              } catch (error) {
+                console.error("Feil ved oppdatering av post:", error);
+                alert("Kunne ikke oppdatere posten.");
+              }
+            } else {
+              body.innerHTML = "";
+              const inputField = document.createElement("input");
+              inputField.type = "text";
+              inputField.value = post.text;
+              inputField.style.width = "100%";
+              body.appendChild(inputField);
+              editBtn.textContent = "Save";
+            }
+          });
           
+          //delete knapp
           const deleteBtn = document.createElement("button");
           deleteBtn.textContent = "Delete";
           deleteBtn.classList.add("btn-delete");
@@ -102,6 +130,30 @@ export async function renderPostsForMeetup(meetupId: number) {
               const editCommentBtn = document.createElement("button");
               editCommentBtn.textContent = "Edit";
               editCommentBtn.classList.add("btn-edit-comment");
+              editCommentBtn.addEventListener("click", async () => {
+                const isEditing = commentBody.querySelector("input");
+                if (isEditing) {
+                  const inputField = commentBody.querySelector("input") as HTMLInputElement;
+                  const newText = inputField.value;
+                  if (newText.trim() === "") return alert("Svaret kan ikke være tomt.");
+                  
+                  try {
+                    await updateComment(comment.id, { comment: newText });
+                    renderPostsForMeetup(meetupId);
+                  } catch (error) {
+                    console.error("Feil ved oppdatering av kommentar:", error);
+                    alert("Kunne ikke oppdatere svaret.");
+                  }
+                } else {
+                  commentBody.innerHTML = "";
+                  const inputField = document.createElement("input");
+                  inputField.type = "text";
+                  inputField.value = comment.comment;
+                  inputField.style.width = "100%";
+                  commentBody.appendChild(inputField);
+                  editCommentBtn.textContent = "Save";
+                }
+              });
               
               const deleteCommentBtn = document.createElement("button");
               deleteCommentBtn.textContent = "Delete";
