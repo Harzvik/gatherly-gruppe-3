@@ -32,12 +32,13 @@ export function openPreviewModal(meetup: MeetupsType, currentUserId: number, ren
                     <p>${meetup.description}</p>
                     <p>📍${meetup.location}</p>
                     <p>📅${meetup.date}</p>
+                    <div class="preview-modal-wrapper">
+                        ${meetup.userId === currentUserId ? `
+                        <button id="edit-btn">Rediger arrangementet</button>
+                        <button id="delete-btn">Slett arrangementet</button>`:""}
+                        <button id="see-more-btn">Les mer om arrangementet!</button>
 
-                    ${meetup.userId === currentUserId ? `
-                    <button id="edit-btn">Rediger arrangementet</button>
-                    <button id="delete-btn">Slett arrangementet</button>`:""}
-
-                    <button id="see-more-btn">Les mer om arrangementet!</button>
+                    </div>
                 </div>
 
                 <div class="modal-divider"></div>
