@@ -27,9 +27,10 @@ export class HeaderComponent extends HTMLElement {
                         <li style="position: relative;">
                             <a href="#" class="nav-item" id="login-btn">${username}</a>
                             <ul id="user-switcher-dropdown" class="user-switcher" style="display: none;">
-                                <li data-userid="1">User 1</li>
-                                <li data-userid="2">User 2</li>
-                                <li data-userid="3">User 3</li>
+                                <li data-userid="0">Ingen bruker</li>
+                                <li data-userid="1">Bruker 1</li>
+                                <li data-userid="2">Bruker 2</li>
+                                <li data-userid="3">Bruker 3</li>
                             </ul>
                         </li>
                     </ul>
