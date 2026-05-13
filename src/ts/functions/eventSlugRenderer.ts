@@ -42,7 +42,6 @@ export function renderEventActionBar(meetupData: MeetupsType) {
 
   const currentUserId = getCurrentUserId();
   
-  // Sørg for at arrays finnes
   const participants = meetupData.participants || [];
   const likedBy = meetupData.likedBy || [];
 
@@ -71,7 +70,6 @@ export function renderEventActionBar(meetupData: MeetupsType) {
                 </div>
                 `;
 
-  // Legg til click events
   const likeBtn = document.querySelector(`#like-btn-${meetupData.id}`);
   const joinBtn = document.querySelector(`#join-btn-${meetupData.id}`);
 
