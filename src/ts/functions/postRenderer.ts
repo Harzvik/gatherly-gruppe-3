@@ -1,9 +1,7 @@
 /*Alex Harsvik*/
 import { getPostsForMeetup } from "../api/postFetcher";
 import { deletePost } from "../api/deletePost";
-import { deleteComment } from "../api/deleteComment";
 import { updatePost } from "../api/updatePost";
-import { updateComment } from "../api/updateComment";
 import type { Post } from "../types/postsType";
 import type { CommentsType } from "../types/commentsType";
 import { formatDate } from "./dateFormatter";
@@ -51,10 +49,54 @@ export async function renderPostsForMeetup(meetupId: number) {
         const actions = document.createElement("div");
         actions.classList.add("post-actions");
         
+        //reply funsjonalitet
         const replyBtn = document.createElement("button");
         replyBtn.textContent = "Reply";
         replyBtn.classList.add("btn-reply");
         actions.appendChild(replyBtn);
+        
+        const replyFormContainer = document.createElement("div");
+        replyFormContainer.classList.add("reply-form-container");
+        replyFormContainer.style.display = "none";
+        
+        replyBtn.addEventListener("click", () => {
+          if (replyFormContainer.style.display === "none") {
+            replyFormContainer.style.display = "flex";
+            replyFormContainer.innerHTML = `
+              <input type="text" placeholder="Skriv et svar..." class="reply-input" />
+              <button class="reply-submit-btn">Send</button>
+            `;
+            const submitBtn = replyFormContainer.querySelector("button");
+            const inputField = replyFormContainer.querySelector("input");
+            
+            submitBtn?.addEventListener("click", async () => {
+              const text = inputField?.value;
+              if (!text || text.trim() === "") return alert("Svaret kan ikke være tomt.");
+              
+              try {
+                const newComment = {
+                  id: Date.now(), //HVORFOR GJØR IKKE BACKEND DETTE????? jeg er dum og forvirra
+                  userId: currentUserId,
+                  comment: text,
+                  created: new Date().toISOString(), //jeg trodde at backend skulle lage dette men får det ikke til å funke så gjør det her for å få det til å vises i UI
+                } as CommentsType;
+                
+                if (!post.comments) {
+                  post.comments = [];
+                }
+                post.comments.push(newComment);
+                
+                await updatePost(post.id, post);
+                renderPostsForMeetup(meetupId);
+              } catch (error) {
+                console.error("Feil ved oppretting av kommentar:", error);
+                alert("Kunne ikke sende svaret.");
+              }
+            });
+          } else {
+            replyFormContainer.style.display = "none";
+          }
+        });
 
         if (post.userId === currentUserId) {
           //edit knapp
@@ -80,7 +122,7 @@ export async function renderPostsForMeetup(meetupId: number) {
               const inputField = document.createElement("input");
               inputField.type = "text";
               inputField.value = post.text;
-              inputField.style.width = "100%";
+              inputField.classList.add("edit-input");
               body.appendChild(inputField);
               editBtn.textContent = "Save";
             }
@@ -138,7 +180,11 @@ export async function renderPostsForMeetup(meetupId: number) {
                   if (newText.trim() === "") return alert("Svaret kan ikke være tomt.");
                   
                   try {
-                    await updateComment(comment.id, { comment: newText });
+                    const targetComment = post.comments.find(c => c.id === comment.id);
+                    if (targetComment) {
+                      targetComment.comment = newText;
+                      await updatePost(post.id, post);
+                    }
                     renderPostsForMeetup(meetupId);
                   } catch (error) {
                     console.error("Feil ved oppdatering av kommentar:", error);
@@ -149,7 +195,7 @@ export async function renderPostsForMeetup(meetupId: number) {
                   const inputField = document.createElement("input");
                   inputField.type = "text";
                   inputField.value = comment.comment;
-                  inputField.style.width = "100%";
+                  inputField.classList.add("edit-input");
                   commentBody.appendChild(inputField);
                   editCommentBtn.textContent = "Save";
                 }
@@ -161,7 +207,8 @@ export async function renderPostsForMeetup(meetupId: number) {
               deleteCommentBtn.addEventListener("click", async () => {
                 if (confirm("Er du sikker på at du vil slette dette svaret?")) {
                   try {
-                    await deleteComment(comment.id);
+                    post.comments = post.comments.filter(c => c.id !== comment.id);
+                    await updatePost(post.id, post);
                     // Re-render posts after deletion
                     renderPostsForMeetup(meetupId);
                   } catch (error) {
@@ -179,7 +226,7 @@ export async function renderPostsForMeetup(meetupId: number) {
           });
         }
 
-        postElement.append(header, body, actions, repliesContainer);
+        postElement.append(header, body, actions, replyFormContainer, repliesContainer);
         postsListContainer.appendChild(postElement);
       });
     }
