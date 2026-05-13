@@ -2,6 +2,7 @@
 import type { MeetupsType } from "../types/meetupType.ts";
 import { getCurrentUserId } from "./userManagement.ts";
 import { updateMeetup } from "../api/updateMeetup.ts";
+import { formatDate } from "./dateFormatter.ts";
 
 export function renderEventDetails(meetupData: MeetupsType) {
   const eventContainer = document.querySelector("#event-container");
@@ -12,7 +13,7 @@ export function renderEventDetails(meetupData: MeetupsType) {
                     ${meetupData.tags.map((tag) => `<li>${tag}</li>`).join("")}
                 </ul>
                 <h1 class="event-title">${meetupData.name}</h1>
-                <p class="event-creator"><strong>Opprettet av:</strong> Placeholder bruker </p>
+                <p class="event-creator"><strong>Opprettet av:</strong> User ${meetupData.userId}</p>
                 <p class="event-description">${meetupData.description}</p>
             </div>
             <div class="event-details-card">
@@ -22,7 +23,7 @@ export function renderEventDetails(meetupData: MeetupsType) {
                 
                     <div class="event-date">
                         <img src="../../../public/assets/component_assets/icons/calender_1.webp" alt="Kalender ikon" class="calender_1"/>
-                        <p>${meetupData.date}</p>
+                        <p>${formatDate(meetupData.date)}</p>
                     </div>
                     <div class="event-location">
                         <img src="../../../public/assets/component_assets/icons/location.webp" alt="Sted ikon" class="location_1"/>
@@ -55,7 +56,7 @@ export function renderEventActionBar(meetupData: MeetupsType) {
   eventContainer.innerHTML = `
 <div class="event-actions-bar">
                     <div class="event-bar-left">
-                        <p>${meetupData.date}</p>
+                        <p>${formatDate(meetupData.date)}</p>
                         <h2 class="event-title-bar">${meetupData.name}</h2>
                     </div>
                     <div class="event-bar-right">
