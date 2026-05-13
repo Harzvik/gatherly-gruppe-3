@@ -1,5 +1,7 @@
 /*Alex Harsvik*/
 import { getPostsForMeetup } from "../api/postFetcher";
+import { deletePost } from "../api/deletePost";
+import { deleteComment } from "../api/deleteComment";
 import type { Post } from "../types/postsType";
 import type { CommentsType } from "../types/commentsType";
 import { formatDate } from "./dateFormatter";
@@ -60,6 +62,18 @@ export async function renderPostsForMeetup(meetupId: number) {
           const deleteBtn = document.createElement("button");
           deleteBtn.textContent = "Delete";
           deleteBtn.classList.add("btn-delete");
+          deleteBtn.addEventListener("click", async () => {
+            if (confirm("Er du sikker på at du vil slette denne posten?")) {
+              try {
+                await deletePost(post.id);
+                
+                renderPostsForMeetup(meetupId);
+              } catch (error) {
+                console.error("Feil ved sletting av post:", error);
+                alert("Kunne ikke slette posten.");
+              }
+            }
+          });
 
           actions.append(editBtn, deleteBtn);
         }
@@ -92,6 +106,18 @@ export async function renderPostsForMeetup(meetupId: number) {
               const deleteCommentBtn = document.createElement("button");
               deleteCommentBtn.textContent = "Delete";
               deleteCommentBtn.classList.add("btn-delete-comment");
+              deleteCommentBtn.addEventListener("click", async () => {
+                if (confirm("Er du sikker på at du vil slette dette svaret?")) {
+                  try {
+                    await deleteComment(comment.id);
+                    // Re-render posts after deletion
+                    renderPostsForMeetup(meetupId);
+                  } catch (error) {
+                    console.error("Feil ved sletting av kommentar:", error);
+                    alert("Kunne ikke slette kommentaren.");
+                  }
+                }
+              });
 
               commentActions.append(editCommentBtn, deleteCommentBtn);
             }
