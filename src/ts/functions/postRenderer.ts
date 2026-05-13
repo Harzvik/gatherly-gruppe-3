@@ -2,13 +2,14 @@
 import { getPostsForMeetup } from "../api/postFetcher";
 import { deletePost } from "../api/deletePost";
 import { updatePost } from "../api/updatePost";
+import { getCurrentUserId } from "./userManagement";
 import type { Post } from "../types/postsType";
 import type { CommentsType } from "../types/commentsType";
 import { formatDate } from "./dateFormatter";
 
-const currentUserId = 1; // Placeholder
-
 export async function renderPostsForMeetup(meetupId: number) {
+  const currentUserId = getCurrentUserId();
+  
   try {
     const posts: Post[] = await getPostsForMeetup(meetupId);
 
