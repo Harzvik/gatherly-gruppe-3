@@ -207,6 +207,12 @@
     text-transform: uppercase;
 }
 
+.modal-left p{
+    font-family: var(--font-main);
+    font-size: var(--fs-sub);
+    margin: 1rem 0;
+}
+
 .modal-divider {
     background-color: grey;
     width: 1px;
@@ -303,6 +309,8 @@
 }
 
 
+
+
 /*
     PREVIEW CARDS
 */
@@ -339,6 +347,7 @@
     border: none;
     padding: 0.6rem 1.2rem;
     cursor: pointer;
+    margin-top: 1rem;
 }
 
 #delete-btn {
@@ -359,6 +368,18 @@
     border: none;
     padding: 0.6rem 1.2rem;
     cursor: pointer;
+}
+
+#edit-submit {
+    background-color: var(--color-primary);
+    color: white;
+    font-family: var(--font-header);
+    font-size: var(--fs-sub);
+    font-weight: var(--fw-bold);
+    border: none;
+    padding: 0.6rem;
+    width: 100%;
+    margin-top: 1rem;
 }
 
 

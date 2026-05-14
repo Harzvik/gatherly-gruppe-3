@@ -122,7 +122,9 @@ export function setupCreateModal(renderCards: RenderCardsFn, currentUserId: numb
                 tags,
                 userId: currentUserId,
                 created: new Date().toISOString(),
-                updated: new Date().toISOString()
+                updated: new Date().toISOString(),
+                participants: [],
+                likedBy: [],
             });
 
             closeModal();
