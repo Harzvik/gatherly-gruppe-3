@@ -1,4 +1,5 @@
 /*Alex Harsvik*/
+
 import { API_BASE_URL, API_KEY } from "./config";
 import type { CreatePostInput, Post } from "../types/postsType";
 

@@ -1,7 +1,7 @@
 /* Eileen Kim */
 
 import { getAllMeetups } from "../api/meetupFetcher";
-import { filterUpcomingWeek, filterUpcomingMonth } from "./upcomingFilter.ts";
+import { filterUpcomingWeek, filterUpcomingMonth } from "./upcomingFilter";
 import type { MeetupsType } from "../types/meetupType";
 
 type RenderCardsFn = (meetups: MeetupsType[]) => void;

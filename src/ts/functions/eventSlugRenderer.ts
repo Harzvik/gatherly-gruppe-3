@@ -1,4 +1,5 @@
 /*Alex Harsvik*/
+
 import type { MeetupsType } from "../types/meetupType.ts";
 import { getCurrentUserId } from "./userManagement.ts";
 import { updateMeetup } from "../api/updateMeetup.ts";

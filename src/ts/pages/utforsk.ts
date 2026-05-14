@@ -2,7 +2,7 @@ import { CardComponent } from "../components/card.ts";
 import { HeaderComponent } from "../components/header.ts";
 import { getAllMeetups } from "../api/meetupFetcher.ts";
 import { setupCreateModal } from "../functions/modalRenderer.ts";
-import { setupPreveiwModal, openPreviewModal } from "../functions/previewModalRenderer.ts";
+import { setupPreviewModal, openPreviewModal } from "../functions/previewModalRenderer.ts";
 import { setupFilterPanel } from "../functions/filterPanelRenderer.ts";
 import { setupUpcomingFilter } from "../functions/upcomingFilter.ts";
 import { getCurrentUserId } from "../functions/userManagement.ts"
@@ -77,7 +77,7 @@ async function loadEvents() {
 loadEvents();
 setupCreateModal(renderCards, getCurrentUserId());
 setupTagFilters();
-setupPreveiwModal();
+setupPreviewModal();
 setupUpcomingFilter(renderCards);
 setupExpandBtn();
 setupFilterPanel(renderCards);

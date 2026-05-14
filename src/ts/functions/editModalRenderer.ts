@@ -6,7 +6,7 @@ import type { MeetupsType } from "../types/meetupType";
 
 type RenderCardsFn = (meetups: MeetupsType[]) => void;
 
-export function openEditModal(meetup: MeetupsType, renderCards: RenderCardsFn) {
+export function openEditModal(meetup: MeetupsType, renderCards: RenderCardsFn):void {
     const modal = document.getElementById("preview-modal");
     if (!modal) return;
 
@@ -59,7 +59,7 @@ export function openEditModal(meetup: MeetupsType, renderCards: RenderCardsFn) {
     
     modal.classList.remove("hidden");
 
-    document.getElementById("edit-close")?.addEventListener("click", () => {
+    document.getElementById("modal-close")?.addEventListener("click", () => {
         modal.classList.add("hidden");
     });
 
@@ -83,8 +83,10 @@ export function openEditModal(meetup: MeetupsType, renderCards: RenderCardsFn) {
 
         if(!name || !description || !location || !date){
             const errorEl = document.getElementById("edit-error");
-            errorEl?.classList.remove("hidden");
-            errorEl!.textContent = "Fyll ut alle obligatoriske felt!";
+            if (errorEl){
+                errorEl.classList.remove("hidden");
+                errorEl.textContent = "Fyll ut alle obligatoriske felt!"
+            };
             return;
         }
 
@@ -107,11 +109,11 @@ export function openEditModal(meetup: MeetupsType, renderCards: RenderCardsFn) {
             const meetups = await getAllMeetups();
             renderCards(meetups);
         } catch(error) {
-            console.error("Feil ved oppdatering:", error);
-
             const errorEl = document.getElementById("edit-error");
-            errorEl?.classList.remove("hidden");
-            errorEl!.textContent = "Noe gikk galt, prøv igjen senere!";
+            if (errorEl) {
+                errorEl.classList.remove("hidden");
+                errorEl.textContent = "Noe gikk galt, prøv igjen senere!";
+            }
         }
     });
 }

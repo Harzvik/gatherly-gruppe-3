@@ -1,4 +1,5 @@
 /* Alex Harsvik */
+
 import "../../css/components/card.css";
 
 export class CardComponent extends HTMLElement {

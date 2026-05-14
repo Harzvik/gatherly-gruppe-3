@@ -62,7 +62,7 @@
     font-size: var(--fs-sub);
     margin: 0;
     color: white;
-    font-weight: bolder;;
+    font-weight: bolder;
 }
 
 .card-time {
@@ -70,12 +70,4 @@
     font-size: var(--fs-sub);
     font-weight: bolder;
     margin: 0;
-}
-
-.event-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(1fr, 320px));
-    gap: 2rem;
-    padding: 2rem;
-    justify-items: center;
 }

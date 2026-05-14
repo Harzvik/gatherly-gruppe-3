@@ -1,4 +1,5 @@
 /* Eileen Kim */
+
 import { createMeetup } from "../api/createMeetup";
 import { getAllMeetups } from "../api/meetupFetcher";
 import type { MeetupsType } from "../types/meetupType";
@@ -108,8 +109,10 @@ export function setupCreateModal(renderCards: RenderCardsFn, currentUserId: numb
         
         if (!name || !description || !location || !date || !chosentag) {
             const errorAlarm = document.getElementById("modal-error");
-            errorAlarm?.classList.remove("hidden");
-            errorAlarm!.textContent = "Fyll ut alle obligatoriske felt!";
+            if (errorAlarm) {
+                errorAlarm.classList.remove("hidden");
+                errorAlarm.textContent = "Fyll ut alle obligatoriske felt!";
+            }
             return;            
         }
 
@@ -132,10 +135,11 @@ export function setupCreateModal(renderCards: RenderCardsFn, currentUserId: numb
             const meetups = await getAllMeetups();
             renderCards(meetups);
         } catch(error) {
-            console.error("Feil ved oppretting:", error);
             const errorAlarm = document.getElementById("modal-error");
-            errorAlarm?.classList.remove("hidden");
-            errorAlarm!.textContent = "Noe gikk galt her, prøv igjen!";
+            if (errorAlarm) {
+                errorAlarm.classList.remove("hidden");
+                errorAlarm.textContent = "Noe gikk galt her, prøv igjen!";
+            }
         }
     });
 

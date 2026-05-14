@@ -2,7 +2,7 @@
 
 import { API_BASE_URL, API_KEY } from "./config";
 
-export async function deleteMeetup(id:number) {
+export async function deleteMeetup(id:number): Promise<void> {
     const response = await fetch(`${API_BASE_URL}/meetups/${id}`, {
         method: "DELETE",
         headers: {
@@ -13,6 +13,4 @@ export async function deleteMeetup(id:number) {
     if (!response.ok) {
         throw new Error(`HTTP Error! Statuskode: ${response.status}`);
     }
-
-    console.log(`Meetup med id nummer: "${id}" slettet!`)
 };
