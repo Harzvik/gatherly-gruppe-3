@@ -12,7 +12,7 @@ export function openEditModal(meetup: MeetupsType, renderCards: RenderCardsFn) {
 
     modal.innerHTML = `
     <div class="modal-box">
-        <button id="edit-close">x</button>
+        <button id="modal-close">x</button>
 
         <div class="modal-layout">
             <div class="modal-left">
@@ -98,6 +98,8 @@ export function openEditModal(meetup: MeetupsType, renderCards: RenderCardsFn) {
                 userId: meetup.userId,
                 created: meetup.created,
                 updated: new Date().toISOString(),
+                participants: meetup.participants??[],
+                likedBy: meetup.likedBy??[],
             });
 
             modal.classList.add("hidden");

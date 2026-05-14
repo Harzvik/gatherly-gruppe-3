@@ -18,7 +18,7 @@ export function setupPreveiwModal(): void {
     });
 }
 
-export function openPreviewModal(meetup: MeetupsType, currentUserId: number, renderCards: RenderCardsFn): void {
+export function openPreviewModal(meetup: MeetupsType, currentUserId: number, renderCards: RenderCardsFn, loadEvents: ()=> void): void {
     const modal = document.getElementById("preview-modal");
     if(!modal) return;
 
@@ -30,14 +30,13 @@ export function openPreviewModal(meetup: MeetupsType, currentUserId: number, ren
                 <div class="modal-left">
                     <h2>${meetup.name}</h2>
                     <p>${meetup.description}</p>
-                    <p>📍${meetup.location}</p>
-                    <p>📅${meetup.date}</p>
+                    <p>📍 ${meetup.location}</p>
+                    <p>📅 ${meetup.date}</p>
                     <div class="preview-modal-wrapper">
                         ${meetup.userId === currentUserId ? `
                         <button id="edit-btn">Rediger arrangementet</button>
                         <button id="delete-btn">Slett arrangementet</button>`:""}
                         <button id="see-more-btn">Les mer om arrangementet!</button>
-
                     </div>
                 </div>
 
@@ -76,15 +75,20 @@ export function openPreviewModal(meetup: MeetupsType, currentUserId: number, ren
         });
 
         document.getElementById("delete-btn")?.addEventListener("click", async () => {
+            const confirmed = confirm("Er du sikkker på at du vil slette dette arrangementet?");
+            if(!confirmed) return;
+
             try {
                 await deleteMeetup(meetup.id);
                 modal.classList.add("hidden");
+
                 const meetups = await getAllMeetups();
+                console.log("meetups etter slettiing:", meetups)
                 renderCards(meetups);
             }catch (error) {
                 console.error("Feil ved sletting:", error);
             }
 
-        })
+        });
 
 }

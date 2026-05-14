@@ -5,12 +5,13 @@ import { setupCreateModal } from "../functions/modalRenderer.ts";
 import { setupPreveiwModal, openPreviewModal } from "../functions/previewModalRenderer.ts";
 import { setupFilterPanel } from "../functions/filterPanelRenderer.ts";
 import { setupUpcomingFilter } from "../functions/upcomingFilter.ts";
+import { getCurrentUserId } from "../functions/userManagement.ts"
 import type { MeetupsType } from "../types/meetupType.ts";
 
 customElements.define("g-header", HeaderComponent);
 customElements.define("g-card", CardComponent);
 
-const currentUserId = 1;
+const currentUserId = getCurrentUserId();
 
 function renderCards(meetups: MeetupsType[]) {
     const grid = document.getElementById("event-grid");
@@ -24,7 +25,7 @@ function renderCards(meetups: MeetupsType[]) {
         card.setAttribute("tag", meetup.tags[0] ?? "");
 
         card.addEventListener("click", () => {
-            openPreviewModal(meetup, currentUserId, renderCards);
+            openPreviewModal(meetup, currentUserId, renderCards, loadEvents);
         });
 
         card.style.cursor = "pointer";
@@ -74,7 +75,7 @@ async function loadEvents() {
 }
 
 loadEvents();
-setupCreateModal(renderCards, currentUserId);
+setupCreateModal(renderCards, getCurrentUserId());
 setupTagFilters();
 setupPreveiwModal();
 setupUpcomingFilter(renderCards);
