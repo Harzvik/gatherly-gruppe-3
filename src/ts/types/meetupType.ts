@@ -9,9 +9,6 @@ export type MeetupsType = {
   tags: string[];
   created: string;
   updated: string;
-  //forslag til flere:
-  //imageUrl: string;
-  //owner: string;
-  //participants: string[];
-  //comments: string[]; denne er kanskje ikke nødvendig siden vi har posts som et eget obj
+  participants: number[]; // Liste over brukerIDer som deltar
+  likedBy: number[];      // Liste over brukerIDer som liker arrangementet
 };
