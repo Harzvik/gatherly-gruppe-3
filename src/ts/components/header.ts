@@ -1,4 +1,5 @@
 /*Alex Harsvik og Eileen Kim*/
+
 import { setCurrentUserId, getCurrentUsername } from "../functions/userManagement";
 
 export class HeaderComponent extends HTMLElement {
@@ -46,21 +47,19 @@ export class HeaderComponent extends HTMLElement {
         this.setupUserSwitcher();
     }
 
+    /* Ansvar: Eileen */
     private setActiveLink(): void {
         const currentPath = window.location.pathname;
         const navLinks = this.querySelectorAll('.nav-item');
-        console.log("current path:", currentPath);
 
         navLinks.forEach((link) => {
             const href = link.getAttribute('href');
-            console.log("sjekker lenker med href:", href);
 
             if(href) {
                 const cleanHref = href.split('/').pop();
                 const cleanPath = currentPath.split('/').pop() || 'index.html';
                 
                 if(cleanPath === cleanHref) {
-                    console.log("match! legger til active på:", href);
                     link.classList.add('active');
                 }
             }
@@ -69,7 +68,7 @@ export class HeaderComponent extends HTMLElement {
 
     private setupHamburger(): void {
         const hamburger = this.querySelector("#hamburger-btn");
-        const navLinks = this. querySelector(".nav-links");
+        const navLinks = this.querySelector(".nav-links");
 
         hamburger?.addEventListener("click", () => {
             navLinks?.classList.toggle("open");
@@ -77,6 +76,7 @@ export class HeaderComponent extends HTMLElement {
         });
     }
 
+    /* Ansvar: Alex */
     private setupUserSwitcher(): void {
         const loginBtn = this.querySelector("#login-btn") as HTMLElement;
         const dropdown = this.querySelector("#user-switcher-dropdown") as HTMLElement;

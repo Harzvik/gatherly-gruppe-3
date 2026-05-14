@@ -1,4 +1,5 @@
 /*Alex Harsvik*/
+
 import { getMeetupById } from "../api/meetupFetcher.ts";
 import {
   renderEventActionBar,

@@ -1,10 +1,11 @@
 /* Eileen Kim */
+
 import { getAllMeetups } from "../api/meetupFetcher";
 import type { MeetupsType } from "../types/meetupType";
 
-type RenderCardsFn = (meetups: MeetupsType[]) => void
+type RenderCardsFn = (meetups: MeetupsType[]) => void;
 
-export async function setupUpcomingFilter(renderCards: RenderCardsFn) {
+export async function setupUpcomingFilter(renderCards: RenderCardsFn): Promise<void> {
     const upcomingBtn = document.querySelector(".dropdown-btn");
 
     upcomingBtn?.addEventListener("click", async() => {

@@ -13,40 +13,40 @@
     <g-header></g-header>
 
     <main class="explore-container">      
-      <section class="explore-header">
+      <div class="explore-header">
         <h1>Utforsk dine interesser!</h1>
 
         <div class="filter-section-wrapper">
           <div class="tag-row">
             <div class= "category-tags" id="tagContainer">
-              <button class="tag-btn">Teknologi</button>
-              <button class="tag-btn">Sport</button>
-              <button class="tag-btn">Håndverk</button>
-              <button class="tag-btn">Gaming</button>
+              <button class="tag-btn" data-tag="Teknologi">Teknologi</button>
+              <button class="tag-btn" data-tag="Sport">Sport</button>
+              <button class="tag-btn" data-tag="Håndverk">Håndverk</button>
+              <button class="tag-btn" data-tag="Gaming">Gaming</button>
               <!-- Skjulte tags -->
-              <button class="tag-btn hidden-tag">Reise</button>
-              <button class="tag-btn hidden-tag">Helse</button>
-              <button class="tag-btn hidden-tag">Business</button>
+              <button class="tag-btn hidden-tag" data-tag="Reise">Reise</button>
+              <button class="tag-btn hidden-tag" data-tag="Helse">Helse</button>
+              <button class="tag-btn hidden-tag" data-tag="Business">Business</button>
             </div>
-            <button class="arrow-icon" id="expandBtn"></span>
+            <button class="arrow-icon" id="expandBtn" aria-label="Vis flere kategorier" aria-expanded="false"></button>
           </div>
 
 
           <div class="action-row">
             <button class="dropdown-btn">Kommende uke</button>
-            <button class="filter-icon-btn">
+            <button class="filter-icon-btn" aria-label="Åpne filtervalg">
               Filter
               <img src="/assets/component_assets/icons/filter_1.webp" alt="filter ikon">
             </button>
           </div>
         </div>
-      </section>
+      </div>
 
       <!-- ARRAY -->
       <section id="event-grid" class="event-grid">
       </section>
 
-      <button class="sticky-addBtn">
+      <button class="sticky-addBtn" aria-label="Opprett nytt arrangement">
         <img src="/assets/component_assets/icons/Opprett_btn.png" alt="Opprett nytt arrangement">
       </button>
     </main>

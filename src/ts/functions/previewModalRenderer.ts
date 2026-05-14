@@ -7,7 +7,7 @@ import { getAllMeetups } from "../api/meetupFetcher";
 
 type RenderCardsFn = (meetups: MeetupsType[]) => void;
 
-export function setupPreveiwModal(): void {
+export function setupPreviewModal(): void {
     const modal = document.createElement("div");
     modal.id = "preview-modal";
     modal.classList.add("modal-overlay", "hidden");
@@ -18,7 +18,7 @@ export function setupPreveiwModal(): void {
     });
 }
 
-export function openPreviewModal(meetup: MeetupsType, currentUserId: number, renderCards: RenderCardsFn, loadEvents: ()=> void): void {
+export function openPreviewModal(meetup: MeetupsType, currentUserId: number, renderCards: RenderCardsFn): void {
     const modal = document.getElementById("preview-modal");
     if(!modal) return;
 
@@ -83,10 +83,9 @@ export function openPreviewModal(meetup: MeetupsType, currentUserId: number, ren
                 modal.classList.add("hidden");
 
                 const meetups = await getAllMeetups();
-                console.log("meetups etter slettiing:", meetups)
                 renderCards(meetups);
             }catch (error) {
-                console.error("Feil ved sletting:", error);
+                alert("Noe gikk galt ved sletting, prøv igjen!");
             }
 
         });

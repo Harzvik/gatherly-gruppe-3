@@ -1,4 +1,5 @@
 /*Alex Harsvik*/
+
 export function getMeetupIdFromUrl(): number | null {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);

@@ -1,8 +1,9 @@
 /* Eileen Kim */
+
 import { API_BASE_URL, API_KEY } from "./config";
 import type { MeetupsType } from "../types/meetupType";
 
-export async function createMeetup(newMeetupData: Omit<MeetupsType, "id">) {
+export async function createMeetup(newMeetupData: Omit<MeetupsType, "id">): Promise<MeetupsType> {
     const response = await fetch(`${API_BASE_URL}/meetups`, {
         method: "POST",
         headers: {
@@ -17,6 +18,5 @@ export async function createMeetup(newMeetupData: Omit<MeetupsType, "id">) {
     }
 
     const created: MeetupsType = await response.json();
-    console.log("Meetup opprettet:", created);
     return created;
 }

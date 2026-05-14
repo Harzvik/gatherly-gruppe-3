@@ -1,4 +1,5 @@
 /*Alex Harsvik*/
+
 import { API_BASE_URL, API_KEY } from "./config";
 
 export async function deletePost(postId: number): Promise<void> {
