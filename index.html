@@ -14,26 +14,37 @@
     <section class="hero-section">
       <div class="hero-content">
         <div class="hero-text">
-          <h1>Livet skjer når du møter opp.</h1>
-          <p>
-            La oss hjelpe deg med å finne arrangementer som er verdt å delta på!
-          </p>
-          <button class="registere-btn">Registrer deg gratis!</button>
+          <h1 id="welcome-message">Velkommen til Gatherly!</h1>
+          <p>Her er en oversikt over arrangementene du deltar på og har lagret.</p>
         </div>
 
         <div class="hero-img-wrapper">
           <div class="tape tape-top"></div>
           <div class="img-container">
-            <!--LEGGE INN BILDER HER??? funnet bilder?-->
-            <img src="" />
+            <img src="./public/assets/forside.jpg" alt="Welcome image" style="width: 100%; height: 100%; object-fit: cover;" />
           </div>
           <div class="tape tape-bottom"></div>
         </div>
       </div>
     </section>
 
-    <!--  HER KOMMER ARRAYET -->
-    <g-card></g-card>
+    <!-- CONTAINER FOR THE FEED -->
+    <main class="explore-container">
+      
+      <!-- DINE ARRANGEMENTER -->
+      <section class="user-events-section">
+        <h2 class="section-title">Arrangementer du deltar på</h2>
+        <div id="joined-events-grid" class="event-grid"></div>
+      </section>
+
+      <!-- LIKTE ARRANGEMENTER -->
+      <section class="user-events-section">
+        <h2 class="section-title">Dine likte arrangementer</h2>
+        <div id="liked-events-grid" class="event-grid"></div>
+      </section>
+
+    </main>
+
     <script type="module" src="./src/ts/pages/index.ts"></script>
   </body>
 </html>

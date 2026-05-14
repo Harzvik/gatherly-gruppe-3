@@ -1,4 +1,128 @@
 @import "../variables.css";
 @import "../reset.css";
 @import "../components/header.css";
+@import "../components/card.css";
+
+/* HERO SECTION */
+.hero-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4rem 2rem;
+    margin-bottom: 2rem;
+}
+
+.hero-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+    gap: 2rem;
+}
+
+.hero-text {
+    flex: 1;
+}
+
+.hero-text h1 {
+    font-family: var(--font-header);
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: var(--color-text);
+}
+
+.hero-text p {
+    font-family: var(--font-body);
+    font-size: 1.25rem;
+    color: var(--color-text-light, #555);
+}
+
+.hero-img-wrapper {
+    position: relative;
+    width: 400px;
+    height: 300px;
+    background-color: var(--color-background);
+}
+
+.img-container {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.tape {
+    position: absolute;
+    width: 100px;
+    height: 30px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    z-index: 0;
+}
+
+.tape-top {
+    top: -15px;
+    right: -20px;
+    transform: rotate(15deg);
+    background-image: url('../../../public/assets/component_assets/cyan_tape/tape2.webp');
+}
+
+.tape-bottom {
+    bottom: -15px;
+    left: -20px;
+    transform: rotate(-10deg);
+    background-image: url('../../../public/assets/component_assets/cyan_tape/tape3.webp');
+}
+
+/* CARD GRID */
+.explore-container {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.user-events-section {
+    margin-bottom: 3rem;
+}
+
+.section-title {
+    font-family: var(--font-header);
+    font-size: var(--fs-header);
+    margin: 0 3rem 1rem 3rem;
+    padding-bottom: 0.5rem;
+    color: var(--color-text);
+    border-bottom: 2px solid var(--color-text);
+}
+
+.event-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    padding: 2rem 3rem;
+}
+
+@media (max-width: 480px) {
+    .event-grid {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+    }
+}
+
+@media (481px <= width <= 768px) {
+    .event-grid {
+        grid-template-columns: 1fr 1fr;
+        padding: 1rem;
+    }
+}
+
+.empty-state-message {
+    padding: 2rem 3rem;
+    font-family: var(--font-body);
+    font-size: var(--fs-body);
+    color: var(--color-text-light, #555);
+}
+
+.clickable-card {
+    cursor: pointer;
+}
 

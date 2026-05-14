@@ -3,10 +3,10 @@
 /*en veldig simpel bruker bytte funsksjon for å ersatte logg inn og sånt.
 kan brukes for å teste forskjellige brukere IDer */
 
-//defaulter til 1.
+//defaulter til 0 (Ingen bruker).
 export function getCurrentUserId(): number {
   const storedId = localStorage.getItem("gatherly_current_user");
-  return storedId ? parseInt(storedId, 10) : 1;
+  return storedId ? parseInt(storedId, 10) : 0;
 }
 
 export function setCurrentUserId(userId: number): void {
@@ -15,5 +15,6 @@ export function setCurrentUserId(userId: number): void {
 
 export function getCurrentUsername(): string {
   const userId = getCurrentUserId();
-  return `User ${userId}`;
+  if (userId === 0) return "Ingen bruker";
+  return `Bruker ${userId}`;
 }
