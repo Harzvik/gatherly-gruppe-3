@@ -39,6 +39,8 @@ public
 
 ## ⚙️ Kort om `src/ts/api/config.ts`
 
+API_KEY er flyttet til .env.local, config.ts importerer nøkkelen derfra.
+
 Denne filen samler API-oppsett på ett sted:
 
 - `API_BASE_URL`: base-URL som brukes av alle API-kall.
